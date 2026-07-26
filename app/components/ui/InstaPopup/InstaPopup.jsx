@@ -22,9 +22,12 @@ export default function InstaPopup() {
     setShow(false);
   };
 
-  if (!show) return null;
-
   return (
+    <>
+      {/* Preload the logo so it's already in browser cache when popup opens */}
+      <link rel="preload" as="image" href="/logo/logo pop.png" />
+      
+      {show && (
     <div className={styles.overlay}>
       <div className={styles.popup} onClick={(e) => e.stopPropagation()}>
         <button className={styles.closeBtn} onClick={handleClose} aria-label="Close">
@@ -54,5 +57,7 @@ export default function InstaPopup() {
         </MagneticButton>
       </div>
     </div>
+      )}
+    </>
   );
 }
