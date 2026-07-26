@@ -1,0 +1,104 @@
+.gallery {
+  padding: 110px 0;
+}
+
+.heading {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 70px;
+}
+
+.heading span {
+  color: #e7c171;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.heading h2 {
+  margin: 20px 0;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+}
+
+.heading p {
+  color: #bdbdbd;
+  line-height: 1.8;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 22px;
+  cursor: pointer;
+  background: #111;
+  border: 1px solid rgba(255,255,255,.08);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: #e7c171;
+  box-shadow: 0 25px 60px rgba(0,0,0,.35);
+}
+
+.image {
+  object-fit: cover;
+  transition:
+    transform .5s ease,
+    filter .5s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.12);
+  filter: brightness(.75);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,.45);
+
+  opacity: 0;
+
+  transition: .35s;
+}
+
+.overlay span {
+  color: white;
+  padding: 12px 22px;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 50px;
+  backdrop-filter: blur(8px);
+  font-weight: 600;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media (max-width: 600px) {
+
+.grid{
+grid-template-columns:1fr;
+}
+
+}

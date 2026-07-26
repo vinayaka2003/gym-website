@@ -1,0 +1,63 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+
+  background: #0b0b0b;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 10000;
+}
+
+.content {
+  text-align: center;
+}
+
+.logo {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+.content h2 {
+  margin-top: 25px;
+  margin-bottom: 35px;
+
+  font-size: 30px;
+}
+
+.loader {
+  width: 260px;
+  height: 6px;
+
+  background: #1f2937;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  width: 0;
+
+  background: linear-gradient(90deg, #cba052, #f0d795);
+
+  animation: loading 1.8s linear forwards;
+}
+
+@keyframes loading {
+
+0%{
+width:0;
+}
+
+100%{
+width:100%;
+}
+
+}

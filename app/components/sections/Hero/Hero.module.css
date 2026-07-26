@@ -1,0 +1,424 @@
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: visible;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  isolation: isolate;
+  background: #08090b;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -3;
+}
+
+/* layered overlay — depth instead of a flat black wash */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 900px 520px at 12% 15%, rgba(203, 160, 82, 0.14), transparent 60%),
+    linear-gradient(115deg,
+      rgba(5, 6, 8, 0.94) 0%,
+      rgba(5, 6, 8, 0.78) 42%,
+      rgba(5, 6, 8, 0.5) 65%,
+      rgba(5, 6, 8, 0.88) 100%),
+    linear-gradient(to top, rgba(5, 6, 8, 0.96) 0%, rgba(5, 6, 8, 0.05) 50%);
+}
+
+/* subtle film grain for a premium, non-flat texture */
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+.heroContent {
+  position: relative;
+  max-width: 760px;
+  padding-top: 140px;
+  padding-bottom: 100px;
+  color: #f5f2ea;
+}
+
+/* ===========================
+            BADGE
+=========================== */
+
+.badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+  margin-bottom: 30px;
+  border-radius: 999px;
+  /* background is handled by ::after */
+  color: #e7c171;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+
+.badge::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #cba052, #f0d795, #cba052, #fcedc5);
+  background-size: 300% 100%;
+  animation: shimmerBorder 3s linear infinite;
+  z-index: 0;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+.badge::after {
+  content: "";
+  position: absolute;
+  inset: 1.5px;
+  border-radius: 999px;
+  background: #0b0c10;
+  z-index: 1;
+}
+
+.badge:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.badge:hover::before {
+  filter: blur(8px);
+  opacity: 0.8;
+}
+
+@keyframes shimmerBorder {
+  0% { background-position: 0% 0; }
+  100% { background-position: 300% 0; }
+}
+
+.offerIcon {
+  position: relative;
+  z-index: 2;
+  color: #fcedc5;
+}
+
+.offerText {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(100deg, #f0d795 0%, #cba052 45%, #e7c171 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.badgeLine {
+  display: block;
+  width: 12px;
+  height: 2px;
+  background: rgba(231, 193, 113, 0.5);
+  margin: 0 10px;
+}
+
+/* ===========================
+          HEADLINE
+=========================== */
+
+.heroContent h1 {
+  margin: 0;
+  font-size: clamp(3.4rem, 7.8vw, 6.6rem);
+  line-height: 0.94;
+  font-weight: 900;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+
+.gold {
+  background: linear-gradient(100deg, #f0d795 0%, #cba052 45%, #e7c171 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.heroContent p {
+  margin-top: 30px;
+  max-width: 560px;
+  color: rgba(245, 242, 234, 0.7);
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+
+/* ===========================
+          BUTTONS
+=========================== */
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 42px;
+  flex-wrap: wrap;
+}
+
+.joinBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 38px;
+  border-radius: 999px;
+
+  background: linear-gradient(135deg, #f0d795 0%, #cba052 100%);
+  color: #0a0a0b;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  box-shadow: 0 8px 24px rgba(203, 160, 82, 0.3);
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s ease, background .35s ease;
+}
+
+.joinBtn:hover {
+  transform: translateY(-4px) scale(1.04);
+  background: linear-gradient(135deg, #fcedc5 0%, #e2c073 100%);
+  box-shadow: 0 16px 45px rgba(231, 193, 113, 0.6);
+}
+
+.joinBtn:focus-visible {
+  outline: 2px solid #e7c171;
+  outline-offset: 3px;
+}
+
+/* true glass secondary button */
+.secondaryBtn {
+  height: 56px !important;
+  padding: 0 34px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(245, 242, 234, 0.22) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #f5f2ea !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  transition: background .35s ease, border-color .35s ease, transform .35s ease !important;
+}
+
+.secondaryBtn:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(231, 193, 113, 0.5) !important;
+  transform: translateY(-3px);
+}
+
+/* ===========================
+        STATS / TRUST STRIP
+=========================== */
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-top: 54px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(245, 242, 234, 0.1);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #e7c171;
+  letter-spacing: -0.5px;
+}
+
+.statLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(245, 242, 234, 0.5);
+}
+
+/* ===========================
+            SCROLL
+=========================== */
+
+.scroll {
+  position: absolute;
+  bottom: 35px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 1;
+}
+
+.scroll span {
+  width: 26px;
+  height: 42px;
+  border: 1.5px solid rgba(245, 242, 234, 0.4);
+  border-radius: 30px;
+  position: relative;
+}
+
+.scroll span::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  background: #e7c171;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: wheel 1.8s infinite;
+}
+
+@keyframes wheel {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 16px);
+  }
+}
+
+/* ===========================
+        RESPONSIVE
+=========================== */
+
+@media (max-width: 992px) {
+  .heroContent {
+    text-align: center;
+    margin: auto;
+    padding-top: 150px;
+  }
+
+  .heroContent p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .stats {
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .scroll {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100svh;
+  }
+
+  .badge {
+    padding: 9px 16px;
+    font-size: 0.66rem;
+    letter-spacing: 1.8px;
+  }
+
+  .heroContent h1 {
+    font-size: clamp(2.7rem, 12.5vw, 4.4rem);
+    letter-spacing: -1px;
+  }
+
+  .heroContent p {
+    font-size: 0.98rem;
+    line-height: 1.7;
+    margin-top: 24px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .joinBtn,
+  .secondaryBtn {
+    width: 100% !important;
+    height: 50px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .joinBtn {
+    box-shadow: 0 4px 12px rgba(203, 160, 82, 0.1) !important;
+  }
+
+  .stats {
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroContent {
+    padding-top: 130px;
+    padding-bottom: 70px;
+  }
+
+  .heroContent h1 {
+    font-size: 2.6rem;
+  }
+
+  .heroContent p {
+    font-size: 0.92rem;
+  }
+
+  .badge {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stats {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll span::before {
+    animation: none;
+  }
+
+  .joinBtn,
+  .secondaryBtn {
+    transition: none !important;
+  }
+}
