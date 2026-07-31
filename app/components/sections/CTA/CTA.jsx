@@ -24,7 +24,7 @@ export default function CTA() {
 
         <div className={styles.buttons}>
           <Link href="#contact" className={styles.primary}>
-            Book Free Trial
+            Join Now
           </Link>
 
           <a

@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
 
 import Button from "../../ui/Button/Button";
 import MobileMenu from "../MobileMenu/MobileMenu";
+import { smoothScrollTo } from "../../../utils/scroll";
 
 import styles from "./Navbar.module.css";
 
@@ -26,12 +26,17 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
+      const navbar = document.querySelector("header");
+      const navbarHeight = navbar ? navbar.offsetHeight : 72;
+      const navbarTop = navbar ? parseFloat(getComputedStyle(navbar).top) || 0 : 0;
+      const totalOffset = navbarHeight + navbarTop + 12; // 12px buffer for visual alignment
+
       navLinks.forEach((link) => {
         const section = document.querySelector(link.href);
 
         if (!section) return;
 
-        const top = section.offsetTop - 120;
+        const top = section.offsetTop - totalOffset;
         const bottom = top + section.offsetHeight;
 
         if (window.scrollY >= top && window.scrollY < bottom) {
@@ -64,13 +69,14 @@ export default function Navbar() {
 
             <nav className={styles.nav}>
               {navLinks.map((link) => (
-                <Link
+                <a
                   key={link.name}
                   href={link.href}
+                  onClick={(e) => smoothScrollTo(e, link.href)}
                   className={active === link.href ? styles.active : ""}
                 >
                   {link.name}
-                </Link>
+                </a>
               ))}
             </nav>
 
@@ -81,11 +87,13 @@ export default function Navbar() {
 
               <button
                 type="button"
-                className={styles.mobileMenu}
+                className={`${styles.mobileMenu} ${menuOpen ? styles.menuOpen : ""}`}
                 onClick={() => setMenuOpen(true)}
                 aria-label="Open Menu"
               >
-                <Menu size={24} />
+                <span className={styles.bar} />
+                <span className={styles.bar} />
+                <span className={styles.bar} />
               </button>
             </div>
           </div>

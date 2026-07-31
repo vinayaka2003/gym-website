@@ -1,29 +1,39 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import Button from "../../ui/Button/Button";
+import { smoothScrollTo } from "../../../utils/scroll";
 import styles from "./MobileMenu.module.css";
 
 const links = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
+  { name: "Home",       href: "#home" },
+  { name: "About",      href: "#about" },
   { name: "Facilities", href: "#facilities" },
-  { name: "Gallery", href: "#gallery" },
-  { name: "Contact", href: "#contact" },
+  { name: "Gallery",    href: "#gallery" },
+  { name: "Etiquette",  href: "#etiquette" },
+  { name: "Contact",    href: "#contact" },
 ];
 
-const menuVariants = {
-  hidden: { x: "100%", transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-  visible: { x: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], staggerChildren: 0.1, delayChildren: 0.2 } },
+const sheetVariants = {
+  hidden: {
+    x: "100%",
+    transition: { duration: 0.45, ease: [0.32, 0.72, 0, 1] },
+  },
+  visible: {
+    x: 0,
+    transition: { duration: 0.55, ease: [0.32, 0.72, 0, 1] },
+  },
 };
 
-const linkVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
+const itemVariants = {
+  hidden: { x: 20, opacity: 0 },
+  visible: (i) => ({
+    x: 0,
+    opacity: 1,
+    transition: { duration: 0.35, delay: 0.15 + i * 0.06, ease: "easeOut" },
+  }),
 };
 
 export default function MobileMenu({ open, onClose }) {
@@ -36,58 +46,76 @@ export default function MobileMenu({ open, onClose }) {
     <AnimatePresence>
       {open && (
         <>
+          {/* Frosted backdrop */}
           <motion.div
             className={styles.overlay}
-            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
             onClick={onClose}
           />
 
+          {/* Right-side drawer */}
           <motion.aside
-            className={styles.menu}
-            variants={menuVariants}
+            className={styles.sheet}
+            variants={sheetVariants}
             initial="hidden"
             animate="visible"
             exit="hidden"
           >
+            {/* Sheet header - close only */}
             <div className={styles.header}>
-              <h2 className={styles.title}>Menu</h2>
               <button
                 className={styles.close}
                 onClick={onClose}
                 aria-label="Close menu"
               >
-                <X size={28} />
+                <X size={20} />
               </button>
             </div>
 
-            <nav>
-              {links.map((link) => (
-                <motion.div key={link.name} variants={linkVariants}>
-                  <Link
-                    href={link.href}
-                    onClick={onClose}
-                    className={styles.link}
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
+            {/* Nav links */}
+            <nav className={styles.nav}>
+              {links.map((link, i) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  custom={i}
+                  variants={itemVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className={styles.link}
+                  onClick={(e) => {
+                    document.body.style.overflow = "";
+                    onClose();
+                    setTimeout(() => smoothScrollTo(e, link.href), 80);
+                  }}
+                >
+                  <span className={styles.linkName}>{link.name}</span>
+                  <span className={styles.linkArrow}>→</span>
+                </motion.a>
               ))}
-            </nav>
 
-            <motion.div variants={linkVariants} className={styles.bottom}>
-              <Button 
-                href="https://wa.me/918867441378?text=Hi%20Goldstone%20Fitness!%20I'm%20interested%20in%20joining%20the%20gym." 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                onClick={onClose} 
-                className={styles.joinBtn}
+              {/* Join Now — gold gradient button below nav */}
+              <motion.div
+                custom={links.length}
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                className={styles.joinWrap}
               >
-                Join Now
-              </Button>
-            </motion.div>
+                <a
+                  href="https://wa.me/918867441378?text=Hi%20Goldstone%20Fitness!%20I'm%20interested%20in%20joining%20the%20gym."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.joinBtn}
+                  onClick={onClose}
+                >
+                  Join Now
+                </a>
+              </motion.div>
+            </nav>
           </motion.aside>
         </>
       )}

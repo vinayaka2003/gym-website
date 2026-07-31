@@ -2,13 +2,12 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: visible;
+  overflow: hidden; /* Prevent background video/elements leaking */
   display: flex;
   align-items: flex-start;
   justify-content: center;
   isolation: isolate;
-  background: #08090b;
+  background: #FAF6F0;
 }
 
 .video {
@@ -17,22 +16,25 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: right center;
   z-index: -3;
+  opacity: 0.85;
+  filter: grayscale(100%) contrast(1.05) brightness(0.95);
 }
 
-/* layered overlay — depth instead of a flat black wash */
 .overlay {
   position: absolute;
   inset: 0;
   z-index: -2;
-  background:
-    radial-gradient(ellipse 900px 520px at 12% 15%, rgba(203, 160, 82, 0.14), transparent 60%),
-    linear-gradient(115deg,
-      rgba(5, 6, 8, 0.94) 0%,
-      rgba(5, 6, 8, 0.78) 42%,
-      rgba(5, 6, 8, 0.5) 65%,
-      rgba(5, 6, 8, 0.88) 100%),
-    linear-gradient(to top, rgba(5, 6, 8, 0.96) 0%, rgba(5, 6, 8, 0.05) 50%);
+  background-image: linear-gradient(
+    90deg,
+    #FAF6F0 0%,
+    #FAF6F0 30%,
+    rgba(250, 246, 240, 0.8) 55%,
+    rgba(250, 246, 240, 0.3) 80%,
+    transparent 100%
+  );
+  background-color: rgba(0, 0, 0, 0.35);
 }
 
 /* subtle film grain for a premium, non-flat texture */
@@ -50,7 +52,7 @@
   max-width: 760px;
   padding-top: 140px;
   padding-bottom: 100px;
-  color: #f5f2ea;
+  color: var(--dark-text);
 }
 
 /* ===========================
@@ -92,7 +94,7 @@
   position: absolute;
   inset: 1.5px;
   border-radius: 999px;
-  background: #0b0c10;
+  background: var(--light-cream);
   z-index: 1;
 }
 
@@ -146,6 +148,9 @@
   font-weight: 900;
   letter-spacing: -2px;
   text-transform: uppercase;
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.18),
+    0 4px 28px rgba(0, 0, 0, 0.1);
 }
 
 .gold {
@@ -158,9 +163,10 @@
 .heroContent p {
   margin-top: 30px;
   max-width: 560px;
-  color: rgba(245, 242, 234, 0.7);
+  color: var(--light-text);
   font-size: 1.1rem;
   line-height: 1.75;
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.6);
 }
 
 /* ===========================
@@ -211,11 +217,11 @@
   height: 56px !important;
   padding: 0 34px !important;
   border-radius: 999px !important;
-  background: rgba(255, 255, 255, 0.04) !important;
-  border: 1px solid rgba(245, 242, 234, 0.22) !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  color: #f5f2ea !important;
+  color: var(--dark-text) !important;
   font-weight: 700 !important;
   letter-spacing: 1px !important;
   text-transform: uppercase !important;
@@ -238,7 +244,7 @@
   gap: 32px;
   margin-top: 54px;
   padding-top: 28px;
-  border-top: 1px solid rgba(245, 242, 234, 0.1);
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
 }
 
 .stat {
@@ -252,6 +258,7 @@
   font-weight: 800;
   color: #e7c171;
   letter-spacing: -0.5px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
 }
 
 .statLabel {
@@ -259,7 +266,7 @@
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: rgba(245, 242, 234, 0.5);
+  color: var(--light-text);
 }
 
 /* ===========================
@@ -279,7 +286,7 @@
 .scroll span {
   width: 26px;
   height: 42px;
-  border: 1.5px solid rgba(245, 242, 234, 0.4);
+  border: 1.5px solid var(--dark-text);
   border-radius: 30px;
   position: relative;
 }
@@ -318,6 +325,21 @@
 =========================== */
 
 @media (max-width: 992px) {
+  .overlay {
+    background-image: linear-gradient(
+      180deg,
+      rgba(250, 246, 240, 0.55) 0%,
+      rgba(250, 246, 240, 0.72) 50%,
+      rgba(250, 246, 240, 0.9) 100%
+    ) !important;
+    background-color: rgba(0, 0, 0, 0.28) !important;
+  }
+
+  .video {
+    opacity: 0.6 !important;
+    object-position: 65% center !important;
+  }
+
   .heroContent {
     text-align: center;
     margin: auto;

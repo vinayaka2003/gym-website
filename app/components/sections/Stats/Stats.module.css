@@ -1,6 +1,6 @@
 .stats {
   padding: 100px 20px;
-  background: linear-gradient(135deg,#0f172a,#111827);
+  background: var(--light-cream);
 }
 
 .container {
@@ -13,8 +13,10 @@
 }
 
 .card {
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
   border-radius: 20px;
 
   padding: 45px 20px;
@@ -27,7 +29,7 @@
 .card:hover{
     transform: translateY(-8px);
     border-color:#e7c171;
-    box-shadow: 0 25px 60px rgba(0,0,0,.35);
+    box-shadow: 0 25px 60px rgba(44, 44, 44, 0.08);
 }
 
 .card h2{
@@ -37,8 +39,8 @@
 }
 
 .card p{
-    color:#d1d5db;
-    font-size:1rem;
+    color: var(--light-text);
+    font-size: 1rem;
 }
 
 @media(max-width:900px){

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import Container from "../../ui/Container/Container";
 import Button from "../../ui/Button/Button";
 import FadeUp from "../../ui/Motion/FadeUp";
@@ -12,7 +13,7 @@ import MagneticButton from "../../ui/MagneticButton/MagneticButton";
 const WHATSAPP_URL =
   "https://wa.me/918867441378?text=Hi%20Goldstone%20Fitness!%20I'm%20interested%20in%20joining%20the%20gym.";
 
-const CURRENT_OFFER = "7 DAYS FREE TRIAL"; // Set to null to display the motivational line
+const CURRENT_OFFER = null; // No free trial offered
 
 export default function Hero() {
   return (
@@ -28,7 +29,7 @@ export default function Hero() {
         <source src="/videos/gym.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark Overlay */}
+      {/* Mask Overlay */}
       <div className={styles.overlay}></div>
 
       {/* Subtle Grain */}
@@ -117,7 +118,8 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Chat on WhatsApp
+                  <FaWhatsapp size={18} style={{ marginRight: "8px", verticalAlign: "middle" }} />
+                  CHAT ON WHATSAPP
                 </Button>
               </MagneticButton>
             </motion.div>

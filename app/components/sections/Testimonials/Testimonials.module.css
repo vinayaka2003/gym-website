@@ -1,6 +1,9 @@
 .testimonials {
-  padding: 100px 0;
-  background: #0f0f0f;
+  min-height: 100svh;
+  padding: calc(var(--section-navbar-offset) + var(--section-block-padding)) 0 var(--section-block-padding);
+  display: flex;
+  align-items: center;
+  background: var(--light-cream);
 }
 
 .heading {
@@ -21,7 +24,7 @@
 }
 
 .heading p {
-  color: #bdbdbd;
+  color: var(--light-text);
   line-height: 1.8;
 }
 
@@ -32,8 +35,10 @@
 }
 
 .card {
-  background: #171717;
-  border: 1px solid #2a2a2a;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
   border-radius: 20px;
   padding: 30px;
   transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
@@ -42,7 +47,7 @@
 .card:hover {
   transform: translateY(-8px);
   border-color: #e7c171;
-  box-shadow: 0 25px 60px rgba(0,0,0,.35);
+  box-shadow: 0 25px 60px rgba(44, 44, 44, 0.08);
 }
 
 .stars {
@@ -53,7 +58,7 @@
 }
 
 .review {
-  color: #d4d4d4;
+  color: var(--dark-text);
   line-height: 1.8;
   margin-bottom: 25px;
   font-style: italic;
@@ -64,7 +69,7 @@
 }
 
 .card span {
-  color: #9ca3af;
+  color: var(--light-text);
   font-size: 0.95rem;
 }
 

@@ -87,18 +87,14 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className={styles.contact}>
-      <Container>
+    <>
+      <section id="contact" className={styles.contact}>
+        <Container>
         <FadeUp>
           <div className={styles.heading}>
             <span>CONTACT</span>
 
             <h2>START YOUR FITNESS JOURNEY TODAY!</h2>
-
-            <p>
-              Have questions? Contact our fitness experts and we&apos;ll help
-              you achieve your goals. It starts with you.
-            </p>
           </div>
 
           <div className={styles.wrapper}>
@@ -194,7 +190,13 @@ export default function Contact() {
               )}
             </form>
           </div>
+        </FadeUp>
+      </Container>
+    </section>
 
+    <section className={styles.mapSection}>
+      <Container>
+        <FadeUp>
           <div className={styles.map}>
             <iframe
               src="https://www.google.com/maps?q=Goldstone+Fitness+Baba+Nagar+Bengaluru&output=embed"
@@ -207,5 +209,6 @@ export default function Contact() {
         </FadeUp>
       </Container>
     </section>
-  );
+  </>
+);
 }

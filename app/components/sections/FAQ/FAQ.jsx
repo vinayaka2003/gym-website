@@ -9,9 +9,9 @@ import styles from "./FAQ.module.css";
 
 const faqs = [
   {
-    question: "Do you offer a free trial?",
+    question: "Do you offer any free trial or day pass?",
     answer:
-      "Yes. Every new member can enjoy a complimentary trial session to explore our facilities and meet our trainers.",
+      "We do not offer free trials or day passes. All members are required to enroll with a paid membership plan to access our facilities.",
   },
   {
     question: "What are your opening hours?",

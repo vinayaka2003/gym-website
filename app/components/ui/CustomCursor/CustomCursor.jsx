@@ -7,13 +7,15 @@ import styles from "./CustomCursor.module.css";
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(pointer: fine)").matches
+  );
 
   useEffect(() => {
-    // Only show custom cursor on non-touch devices
-    if (window.matchMedia("(pointer: fine)").matches) {
-      setIsDesktop(true);
-    }
+    const pointerQuery = window.matchMedia("(pointer: fine)");
+    const handlePointerChange = (event) => setIsDesktop(event.matches);
 
     const mouseMove = (e) => {
       setMousePosition({
@@ -39,10 +41,12 @@ export default function CustomCursor() {
 
     window.addEventListener("mousemove", mouseMove);
     window.addEventListener("mouseover", handleMouseOver);
+    pointerQuery.addEventListener("change", handlePointerChange);
 
     return () => {
       window.removeEventListener("mousemove", mouseMove);
       window.removeEventListener("mouseover", handleMouseOver);
+      pointerQuery.removeEventListener("change", handlePointerChange);
     };
   }, []);
 

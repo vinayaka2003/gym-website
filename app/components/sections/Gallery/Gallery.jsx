@@ -30,10 +30,7 @@ export default function Gallery() {
 
             <h2>Take A Look Inside</h2>
 
-            <p>
-              Explore our training spaces, premium equipment and motivating
-              workout environment.
-            </p>
+
           </div>
         </FadeUp>
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Check } from "lucide-react";
 import Container from "../../ui/Container/Container";
 import Button from "../../ui/Button/Button";
 import FadeUp from "../../ui/Motion/FadeUp";
@@ -9,8 +10,14 @@ const features = [
   "Free General Training",
   "CrossFit & Yoga",
   "Zumba & Mat Pilates",
+  "Free Generalised Diet",
   "Body Transformation",
-  "Functional Fitness",
+  "Functional & Sports Fitness",
+  "Group Classes",
+  "90 Days Transformation",
+  "Injury Recovery Program",
+  "Membership Freezing & Transfer",
+  "3500 sqft. Premium Gym",
 ];
 
 export default function About() {
@@ -32,7 +39,7 @@ export default function About() {
               <span className={styles.subtitle}>YOUR GOALS, OUR MISSION</span>
 
               <h2>
-                Fitness isn&apos;t a destination —
+                Fitness isn&apos;t a destination
                 <br />
                 It&apos;s a way of life.
               </h2>
@@ -44,7 +51,8 @@ export default function About() {
               <div className={styles.features}>
                 {features.map((feature) => (
                   <div key={feature} className={styles.feature}>
-                    ✓ {feature}
+                    <Check size={18} className={styles.checkIcon} />
+                    <span>{feature}</span>
                   </div>
                 ))}
               </div>
