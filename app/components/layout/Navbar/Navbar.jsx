@@ -23,51 +23,69 @@ export default function Navbar() {
   const [active, setActive] = useState("#home");
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+    let cachedOffset = 84; // Default fallback offset
 
+    const updateOffset = () => {
       const navbar = document.querySelector("header");
-      const navbarHeight = navbar ? navbar.offsetHeight : 72;
-      const navbarTop = navbar ? parseFloat(getComputedStyle(navbar).top) || 0 : 0;
-      const totalOffset = navbarHeight + navbarTop + 12; // 12px buffer for visual alignment
-
-      navLinks.forEach((link) => {
-        const section = document.querySelector(link.href);
-
-        if (!section) return;
-
-        const top = section.offsetTop - totalOffset;
-        const bottom = top + section.offsetHeight;
-
-        if (window.scrollY >= top && window.scrollY < bottom) {
-          setActive(link.href);
-        }
-      });
+      if (navbar) {
+        const navbarHeight = navbar.offsetHeight;
+        const navbarTop = parseFloat(getComputedStyle(navbar).top) || 0;
+        cachedOffset = navbarHeight + navbarTop + 12;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
+
+      const currentScroll = window.scrollY;
+
+      for (const link of navLinks) {
+        const section = document.querySelector(link.href);
+        if (!section) continue;
+
+        const top = section.offsetTop - cachedOffset;
+        const bottom = top + section.offsetHeight;
+
+        if (currentScroll >= top && currentScroll < bottom) {
+          setActive(link.href);
+          break;
+        }
+      }
+    };
+
+    updateOffset();
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", updateOffset, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateOffset);
+    };
   }, []);
 
   return (
     <>
       <div className="container">
         <header
-          className={`${styles.navbar} ${scrolled ? styles.scrolled : ""
-            }`}
+          className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}
         >
           <div className={styles.wrapper}>
             <Link href="/" className={styles.logo}>
-              <img src="/logo/logo.png" alt="Goldstone Fitness" style={{ height: "44px", objectFit: "contain", borderRadius: "50%" }} />
+              <img
+                src="/logo/logo.png"
+                alt="Goldstone Fitness Logo"
+                className={styles.logoImage}
+              />
               <div className={styles.logoText}>
                 <span>GOLDSTONE</span>
                 <small>FITNESS</small>
               </div>
             </Link>
 
-            <nav className={styles.nav}>
+            <nav className={styles.nav} aria-label="Main Navigation">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -81,29 +99,35 @@ export default function Navbar() {
             </nav>
 
             <div className={styles.actions}>
-              <Button href="https://wa.me/918867441378?text=Hi%20Goldstone%20Fitness!%20I'm%20interested%20in%20joining%20the%20gym." target="_blank" rel="noopener noreferrer">
-                Join Now
-              </Button>
+              <div className={styles.joinWrap}>
+                <Button
+                  href="https://wa.me/918867441378?text=Hi%20Goldstone%20Fitness!%20I'm%20interested%20in%20joining%20the%20gym."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Join Now
+                </Button>
+              </div>
 
               <button
                 type="button"
-                className={`${styles.mobileMenu} ${menuOpen ? styles.menuOpen : ""}`}
-                onClick={() => setMenuOpen(true)}
-                aria-label="Open Menu"
+                className={styles.mobileMenu}
+                onClick={() => setMenuOpen(!menuOpen)}
+                aria-label="Toggle Menu"
+                aria-expanded={menuOpen}
               >
-                <span className={styles.bar} />
-                <span className={styles.bar} />
-                <span className={styles.bar} />
+                <div className={styles.barWrapper}>
+                  <span className={styles.bar} />
+                  <span className={styles.bar} />
+                  <span className={styles.bar} />
+                </div>
               </button>
             </div>
           </div>
         </header>
       </div>
 
-      <MobileMenu
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-      />
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} activeSection={active.slice(1)} />
     </>
   );
 }

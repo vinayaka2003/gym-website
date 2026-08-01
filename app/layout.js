@@ -1,4 +1,19 @@
+import { Plus_Jakarta_Sans, Antonio } from "next/font/google";
 import "./globals.css";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const antonio = Antonio({
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  variable: "--font-heading",
+  display: "swap",
+});
 
 import Preloader from "./components/ui/Preloader/Preloader";
 import ScrollProgress from "./components/ui/ScrollProgress/ScrollProgress";
@@ -22,12 +37,12 @@ export const metadata = {
   metadataBase: new URL("https://goldstonefitness.com"),
 
   title: {
-    default: "Goldstone Fitness | Premium Gym & Fitness Centre",
+    default: "Goldstone Fitness | Best Gym & Fitness Centre in Yelahanka, Bengaluru",
     template: "%s | Goldstone Fitness",
   },
 
   description:
-    "Premium Gym & Fitness Centre in Yelahanka, Bengaluru. Fit for now 💪🏻, fit for always. FIGHT👊🏻 for FITNESS💪🏻. It starts with you.",
+    "Goldstone Fitness is the premium gym & fitness centre in Yelahanka, Bengaluru. Certified personal trainers, CrossFit, strength training, yoga, and custom nutrition plans.",
 
   keywords: [
     "Gym",
@@ -58,10 +73,10 @@ export const metadata = {
   applicationName: "Goldstone Fitness",
 
   openGraph: {
-    title: "Goldstone Fitness | Premium Gym & Fitness Centre",
+    title: "Goldstone Fitness | Best Gym & Fitness Centre in Yelahanka, Bengaluru",
 
     description:
-      "Premium Gym & Fitness Centre with world-class equipment, certified trainers, and personalised fitness programmes.",
+      "Experience Yelahanka's best gym. Goldstone Fitness offers certified trainers, top-tier strength and CrossFit equipment, and custom nutrition programs.",
 
     url: "https://goldstonefitness.com",
 
@@ -84,10 +99,10 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "Goldstone Fitness",
+    title: "Goldstone Fitness | Gym & Fitness Centre in Yelahanka",
 
     description:
-      "Premium Gym & Fitness Centre with certified trainers and modern equipment.",
+      "Premium Gym in Yelahanka, Bengaluru with top-tier equipment and certified coaches.",
 
     images: ["/og-image.jpg"],
   },
@@ -114,12 +129,79 @@ export const metadata = {
   alternates: {
     canonical: "/",
   },
+
+  other: {
+    "geo.region": "IN-KA",
+    "geo.placename": "Bengaluru",
+    "geo.position": "13.1155;77.6352",
+    "ICBM": "13.1155, 77.6352",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Gym",
+  "name": "Goldstone Fitness",
+  "image": "https://goldstonefitness.com/og-image.jpg",
+  "@id": "https://goldstonefitness.com/#gym",
+  "url": "https://goldstonefitness.com",
+  "telephone": "+918867441378",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "#No 62, KFC Building – 4th Floor, Baba Nagar, Bagalur Main Road",
+    "addressLocality": "Yelahanka",
+    "addressRegion": "Bengaluru",
+    "postalCode": "560064",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 13.1155,
+    "longitude": 77.6352
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "05:00",
+      "closes": "22:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "07:00",
+      "closes": "11:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "16:00",
+      "closes": "21:00"
+    }
+  ],
+  "sameAs": [
+    "https://instagram.com/goldstone_fitness_01"
+  ]
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${plusJakartaSans.variable} ${antonio.variable}`}>
       <body>
+        {/* Local Business JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+
         {/* Initial Loading Screen */}
         <Preloader />
 

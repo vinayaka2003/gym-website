@@ -1,65 +1,109 @@
-.whatsapp {
+.container {
   position: fixed;
   bottom: 28px;
   right: 28px;
-  width: 64px;
-  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999;
+}
+
+.tooltip {
+  background: white;
+  color: #1a1208;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+  position: relative;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  pointer-events: none;
+  
+  /* Hidden by default, slides in on hover */
+  opacity: 0;
+  transform: translateX(12px);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Only show tooltip when hovering over the WhatsApp container on desktop */
+@media (hover: hover) {
+  .container:hover .tooltip {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Little speech bubble arrow pointing right */
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent white;
+}
+
+.tooltip::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent transparent transparent rgba(212, 175, 55, 0.15);
+}
+
+.whatsapp {
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: #25d366;
   color: white;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   text-decoration: none;
-
   box-shadow:
-    0 10px 35px rgba(37,211,102,.45),
-    0 0 0 0 rgba(37,211,102,.6);
-
-  z-index: 9999;
-
-  transition:
-    transform .3s ease,
-    box-shadow .3s ease;
-
-  animation:
-    pulse 2s infinite;
+    0 8px 25px rgba(37, 211, 102, 0.4),
+    0 0 0 0 rgba(37, 211, 102, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: pulse 2s infinite;
 }
 
 .whatsapp:hover {
-  transform: scale(1.12);
-  box-shadow:
-    0 14px 45px rgba(37,211,102,.6);
+  transform: scale(1.08);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
 }
 
 @keyframes pulse {
-
   0% {
-    box-shadow:
-      0 0 0 0 rgba(37,211,102,.55);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
   }
-
   70% {
-    box-shadow:
-      0 0 0 18px rgba(37,211,102,0);
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
   }
-
   100% {
-    box-shadow:
-      0 0 0 0 rgba(37,211,102,0);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
   }
-
 }
 
-@media (max-width:768px){
-
-.whatsapp{
-width:58px;
-height:58px;
-bottom:20px;
-right:20px;
-}
-
+@media (max-width: 768px) {
+  .container {
+    bottom: 20px;
+    right: 20px;
+    gap: 8px;
+  }
+  .whatsapp {
+    width: 52px;
+    height: 52px;
+  }
+  /* Disable tooltip completely in mobile view */
+  .tooltip {
+    display: none !important;
+  }
 }

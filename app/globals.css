@@ -19,15 +19,15 @@
    ROOT variables
 ========================================== */
 :root {
-  --main-bg: #FAF6F0; /* Main light cream background */
-  --secondary-bg: #F7F3EA; /* Secondary warm cream background */
-  --light-cream: #FBF8F2; /* Light cream variant */
+  --main-bg: #FFF8E7; /* Cosmic Latte - warm and comfortable for the eyes */
+  --secondary-bg: #F5F5DC; /* Soft Beige */
+  --light-cream: #FFFDD0; /* Rich Cream */
   --gold-tint: #EAD9A8;
   --primary-gold: #D4AF37;
-  --dark-text: #2C2C2C;
-  --light-text: #5C5C5C;
-  --white: #ffffff;
-  --black: #000000;
+  --dark-text: #222222;
+  --light-text: #4E4E4E;
+  --white: #FFFFF0; /* Soft Ivory */
+  --black: #08090b;
   --section-navbar-offset: 96px;
   --section-block-padding: clamp(28px, 4vh, 48px);
 }
@@ -36,6 +36,7 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   overscroll-behavior: none;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -51,6 +52,7 @@ body {
   color: var(--dark-text);
 
   font-family:
+    var(--font-sans),
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
@@ -62,6 +64,11 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
+  font-weight: 800;
 }
 
 #__next {

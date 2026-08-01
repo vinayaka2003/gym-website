@@ -90,125 +90,125 @@ export default function Contact() {
     <>
       <section id="contact" className={styles.contact}>
         <Container>
-        <FadeUp>
-          <div className={styles.heading}>
-            <span>CONTACT</span>
+          <FadeUp>
+            <div className={styles.heading}>
+              <span>CONTACT</span>
 
-            <h2>START YOUR FITNESS JOURNEY TODAY!</h2>
-          </div>
-
-          <div className={styles.wrapper}>
-            <div className={styles.info}>
-              <div className={styles.card}>
-                <Phone size={22} />
-
-                <div>
-                  <h4>Call Us</h4>
-                  <p>+91 88674 41378<br />+91 88674 91378</p>
-                </div>
-              </div>
-
-              <div className={styles.card}>
-                <FaInstagram size={22} />
-                <div>
-                  <h4>Instagram</h4>
-                  <p>@goldstonefitness</p>
-                </div>
-              </div>
-
-              <div className={styles.card}>
-                <MapPin size={22} />
-
-                <div>
-                  <h4>Visit Us</h4>
-                  <p>#No 62, KFC Building – 4th Floor<br />Baba Nagar, Bagalur Main Road<br />Yelahanka, Bengaluru - 560064</p>
-                </div>
-              </div>
+              <h2>START YOUR FITNESS JOURNEY TODAY!</h2>
             </div>
 
-            <form
-              onSubmit={handleSubmit}
-              className={styles.form}
-            >
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={form.name}
-                onChange={handleChange}
-              />
+            <div className={styles.wrapper}>
+              <div className={styles.info}>
+                <div className={styles.card}>
+                  <Phone size={22} />
 
-              {errors.name && (
-                <small>{errors.name}</small>
-              )}
-
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={form.email}
-                onChange={handleChange}
-              />
-
-              {errors.email && (
-                <small>{errors.email}</small>
-              )}
-
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone Number"
-                value={form.phone}
-                onChange={handleChange}
-              />
-
-              {errors.phone && (
-                <small>{errors.phone}</small>
-              )}
-
-              <textarea
-                rows="6"
-                name="message"
-                placeholder="Tell us about your fitness goals..."
-                value={form.message}
-                onChange={handleChange}
-              />
-
-              {errors.message && (
-                <small>{errors.message}</small>
-              )}
-
-              <button type="submit">
-                Send Message
-              </button>
-
-              {success && (
-                <div className={styles.success}>
-                  <CheckCircle size={20} />
-                  Message sent successfully!
+                  <div>
+                    <h4>Call Us</h4>
+                    <p>+91 88674 41378</p>
+                  </div>
                 </div>
-              )}
-            </form>
-          </div>
-        </FadeUp>
-      </Container>
-    </section>
 
-    <section className={styles.mapSection}>
-      <Container>
-        <FadeUp>
-          <div className={styles.map}>
-            <iframe
-              src="https://www.google.com/maps?q=Goldstone+Fitness+Baba+Nagar+Bengaluru&output=embed"
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Gym Location"
-            />
-          </div>
-        </FadeUp>
-      </Container>
-    </section>
-  </>
-);
+                <div className={styles.card}>
+                  <FaInstagram size={22} />
+                  <div>
+                    <h4>Instagram</h4>
+                    <p>@goldstonefitness</p>
+                  </div>
+                </div>
+
+                <div className={styles.card}>
+                  <MapPin size={22} />
+
+                  <div>
+                    <h4>Visit Us</h4>
+                    <p>#No 62, KFC Building – 4th Floor<br />Baba Nagar, Bagalur Main Road<br />Yelahanka, Bengaluru - 560064</p>
+                  </div>
+                </div>
+              </div>
+
+              <form
+                onSubmit={handleSubmit}
+                className={styles.form}
+              >
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  value={form.name}
+                  onChange={handleChange}
+                />
+
+                {errors.name && (
+                  <small>{errors.name}</small>
+                )}
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={form.email}
+                  onChange={handleChange}
+                />
+
+                {errors.email && (
+                  <small>{errors.email}</small>
+                )}
+
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  value={form.phone}
+                  onChange={handleChange}
+                />
+
+                {errors.phone && (
+                  <small>{errors.phone}</small>
+                )}
+
+                <textarea
+                  rows="6"
+                  name="message"
+                  placeholder="Tell us about your fitness goals..."
+                  value={form.message}
+                  onChange={handleChange}
+                />
+
+                {errors.message && (
+                  <small>{errors.message}</small>
+                )}
+
+                <button type="submit">
+                  Send Message
+                </button>
+
+                {success && (
+                  <div className={styles.success}>
+                    <CheckCircle size={20} />
+                    Message sent successfully!
+                  </div>
+                )}
+              </form>
+            </div>
+          </FadeUp>
+        </Container>
+      </section>
+
+      <section className={styles.mapSection}>
+        <Container>
+          <FadeUp>
+            <div className={styles.map}>
+              <iframe
+                src="https://www.google.com/maps?q=Goldstone+Fitness+Baba+Nagar+Bengaluru&output=embed"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Gym Location"
+              />
+            </div>
+          </FadeUp>
+        </Container>
+      </section>
+    </>
+  );
 }

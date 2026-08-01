@@ -73,6 +73,8 @@ export default function Facilities() {
           <div className={styles.heading}>
             <span>SERVICES OFFERED</span>
 
+            <h2>Our Premium Fitness Services</h2>
+
             <p>
               We&apos;re here to guide you every step of the way with professional training, nutrition guidance, and an environment that inspires success.
             </p>

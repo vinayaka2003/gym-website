@@ -1,131 +1,166 @@
-/* ── Frosted backdrop ─────────────────────────────────────── */
+/* ============================================================
+   FROSTED BACKDROP
+============================================================ */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 10, 5, 0.55);
-  backdrop-filter: blur(22px) saturate(160%);
-  -webkit-backdrop-filter: blur(22px) saturate(160%);
-  z-index: 999;
+  background: rgba(26, 18, 8, 0.45); /* Warm golden charcoal backdrop */
+  z-index: 1020;
 }
 
-/* ── Right-side drawer ────────────────────────────────────── */
+/* ============================================================
+   RIGHT-SIDE GLASSMORPHIC DRAWER SHEET (HALF PAGE)
+============================================================ */
 .sheet {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 1000;
+  width: 50vw; /* Take exactly half the screen width */
+  min-width: 250px; /* Prevent squishing on tiny devices */
+  max-width: 100vw;
+  z-index: 1030;
 
-  width: 55vw;
-  max-width: 260px;
-
-  background: rgba(255, 253, 248, 0.98);
-  backdrop-filter: blur(40px) saturate(200%);
-  -webkit-backdrop-filter: blur(40px) saturate(200%);
-
-  border-top-left-radius: 24px;
-  border-bottom-left-radius: 24px;
-  border-left: 1px solid rgba(212, 175, 55, 0.18);
-
-  padding: 0 20px 28px;
+  background: #FFF8E7; /* Solid warm cream background (no glass/blur effect) */
+  border-left: 1.5px solid rgba(212, 175, 55, 0.28); /* Elegant gold rim border */
+  
+  padding: 0 16px 28px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  box-shadow: -16px 0 60px rgba(0, 0, 0, 0.18);
+  box-shadow: -12px 0 45px rgba(26, 18, 8, 0.15);
 }
 
-/* ── Sheet header (close button only) ────────────────────── */
+/* ============================================================
+   DRAWER HEADER (Close Button Only)
+============================================================ */
 .header {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  padding: 22px 0 16px;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  justify-content: flex-end; /* Align close button to the right */
+  height: 64px; /* Sleeker header */
+  border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+  margin-bottom: 16px;
+  padding: 0 4px;
   flex-shrink: 0;
 }
 
-.close {
-  background: rgba(44, 44, 44, 0.07);
-  border: 1px solid rgba(44, 44, 44, 0.09);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
+.closeBtn {
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
   cursor: pointer;
-  color: var(--dark-text);
-  transition: background 0.25s ease, color 0.25s ease;
+  color: #1a1208;
+  transition: 
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.3s ease;
+}
+
+.closeBtn:hover {
+  background-color: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.4);
+  color: #8a6a1e;
+  transform: rotate(90deg);
+}
+
+.closeIcon {
   flex-shrink: 0;
 }
 
-.close:active {
-  background: #e7c171;
-  color: white;
-  border-color: transparent;
-}
-
-/* ── Nav links ────────────────────────────────────────────── */
+/* ============================================================
+   NAV LIST CONTAINER
+============================================================ */
 .nav {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  overflow: hidden;
-  padding: 14px 0 12px;
-  gap: 2px;
+  gap: 6px;
+  overflow-y: auto;
+  padding-right: 2px;
+  flex-shrink: 0;
 }
 
+/* Custom Scrollbar for Drawer Nav */
+.nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nav::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.2);
+  border-radius: 2px;
+}
+
+/* ============================================================
+   LINK ITEM (PILL-SHAPE LAYOUT)
+============================================================ */
 .link {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 13px 10px;
+  padding: 14px 18px;
   border-radius: 12px;
   text-decoration: none;
-  color: var(--dark-text);
-  transition: background 0.2s ease;
-}
-
-.link:active {
-  background: rgba(212, 175, 55, 0.08);
+  color: var(--light-text);
+  border: 1px solid transparent;
+  transition: 
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+    color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .linkName {
-  font-size: 1rem;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.3px;
-  flex: 1;
+  letter-spacing: 0.5px;
 }
 
-.linkArrow {
-  font-size: 0.85rem;
-  color: rgba(212, 175, 55, 0.4);
+/* Link Hover State (Interactive Shift Left) */
+.link:hover {
+  background-color: rgba(212, 175, 55, 0.06);
+  border-color: rgba(212, 175, 55, 0.2);
+  color: #8a6a1e;
+  transform: translateX(-6px);
 }
 
-/* ── Join Now ─────────────────────────────────────────────── */
-.joinWrap {
-  margin-top: 10px;
+/* Link Active highlighted state (exactly like YouTube mockup) */
+.activeLink {
+  background-color: rgba(212, 175, 55, 0.12) !important;
+  border-color: rgba(212, 175, 55, 0.25) !important;
+  color: #8a6a1e !important;
+}
+
+
+
+/* ============================================================
+   FOOTER (Join Button Container - Flowing naturally / Slight upside)
+============================================================ */
+.footer {
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  padding-top: 20px;
+  margin-top: 16px; /* Positioned directly below the navigation list */
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .joinBtn {
-  display: flex;
-  align-items: center;
+  width: 100% !important;
+  display: flex !important;
   justify-content: center;
-  width: 100%;
-  height: 46px;
-  background: linear-gradient(135deg, #e7c171 0%, #c8951a 100%);
-  color: #1a1208;
-  font-weight: 800;
-  font-size: 0.88rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: 12px;
-  transition: opacity 0.22s ease, transform 0.22s ease;
-}
-
-.joinBtn:active {
-  opacity: 0.85;
-  transform: scale(0.97);
+  align-items: center;
+  box-shadow: 0 6px 20px rgba(138, 106, 30, 0.25) !important;
+  border-radius: 14px !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 2px !important;
 }

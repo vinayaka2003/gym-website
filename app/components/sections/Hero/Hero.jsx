@@ -1,133 +1,141 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
+import { motion, useReducedMotion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import Container from "../../ui/Container/Container";
-import Button from "../../ui/Button/Button";
 import FadeUp from "../../ui/Motion/FadeUp";
 import styles from "./Hero.module.css";
-
-import MagneticButton from "../../ui/MagneticButton/MagneticButton";
 
 const WHATSAPP_URL =
   "https://wa.me/918867441378?text=Hi%20Goldstone%20Fitness!%20I'm%20interested%20in%20joining%20the%20gym.";
 
-const CURRENT_OFFER = null; // No free trial offered
+// One stagger sequence instead of four separately-timed motion.divs —
+// badge, headline, rule, copy, and actions read as a single reveal.
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.14, delayChildren: 0.1 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 26 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+  },
+};
 
 export default function Hero() {
+  const reduceMotion = useReducedMotion();
+  const variants = reduceMotion
+    ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } }
+    : item;
+
   return (
     <section id="home" className={styles.hero}>
-      {/* Background Video */}
-      <video
-        className={styles.video}
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source src="/videos/gym.mp4" type="video/mp4" />
-      </video>
+      {/* Background Media with Poster Fallback */}
+      {reduceMotion ? (
+        <img
+          src="/images/hero-mobile.jpg"
+          alt="Goldstone Fitness Gym Background"
+          className={styles.bgImage}
+          loading="eager"
+        />
+      ) : (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/images/hero-mobile.jpg"
+          className={styles.bgVideo}
+        >
+          <source src="/videos/gym.mp4" type="video/mp4" />
+          <img
+            src="/images/hero-mobile.jpg"
+            alt="Goldstone Fitness Gym Background"
+            className={styles.bgImage}
+          />
+        </video>
+      )}
 
       {/* Mask Overlay */}
-      <div className={styles.overlay}></div>
+      <div className={styles.overlay} aria-hidden="true"></div>
 
       {/* Subtle Grain */}
-      <div className={styles.grain}></div>
-
-      {/* Glow Behind Heading */}
-      <div className={styles.glow}></div>
+      <div className={styles.grain} aria-hidden="true"></div>
 
       <Container>
         <FadeUp>
-          <div className={styles.heroContent}>
-            {/* Premium Badge / Offer Banner */}
-            <motion.div
-              className={styles.badge}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              {CURRENT_OFFER ? (
-                <>
-                  <Sparkles size={16} className={styles.offerIcon} />
-                  <span className={styles.offerText}>{CURRENT_OFFER}</span>
-                </>
-              ) : (
-                <>
-                  <span className={styles.badgeLine}></span>
-                  WHERE STRENGTH MEETS DISCIPLINE
-                  <span className={styles.badgeLine}></span>
-                </>
-              )}
+          <motion.div
+            className={styles.heroContent}
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            {/* Eyebrow */}
+            <motion.div className={styles.badge} variants={variants}>
+              — Where strength meets discipline —
             </motion.div>
 
             {/* Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 35 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.2,
-                duration: 0.7,
-              }}
-            >
-              FIT <span className={styles.gold}>TODAY.</span><br />
+            <motion.h1 variants={variants}>
+              FIT <span className={styles.gold}>TODAY.</span>
+              <br />
               STRONG <span className={styles.gold}>FOREVER.</span>
             </motion.h1>
 
+            {/* Chisel rule */}
+            <motion.div
+              className={styles.divider}
+              initial={reduceMotion ? { scaleX: 1 } : { scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.55, duration: 0.5, ease: "easeOut" }}
+            />
+
             {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.4,
-                duration: 0.7,
-              }}
-            >
-              Build strength, confidence and discipline with elite trainers,
-              world-class equipment and personalised fitness programs designed
-              to help you achieve your goals.
+            <motion.p variants={variants}>
+              Elite coaching, competition-grade equipment, and programming
+              built around your numbers — not a franchise template.
             </motion.p>
 
-            {/* Buttons */}
-            <motion.div
-              className={styles.buttons}
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.6,
-                duration: 0.7,
-              }}
-            >
-              <MagneticButton>
+            {/* Buttons & Discover More */}
+            <motion.div className={styles.actionsRow} variants={variants}>
+              <div className={styles.buttons}>
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.joinBtn}
+                  className={styles.primaryBtn}
+                  aria-label="Book a free session on WhatsApp"
                 >
-                  JOIN MEMBERSHIP
+                  Book a Free Session
                 </a>
-              </MagneticButton>
 
-              <MagneticButton>
-                <Button
-                  variant="secondary"
-                  className={styles.secondaryBtn}
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <a
+                  href="#facilities"
+                  className={styles.outlineBtn}
+                  aria-label="See the facility"
                 >
-                  <FaWhatsapp size={18} style={{ marginRight: "8px", verticalAlign: "middle" }} />
-                  CHAT ON WHATSAPP
-                </Button>
-              </MagneticButton>
+                  See the Facility
+                </a>
+              </div>
+
             </motion.div>
-          </div>
+          </motion.div>
         </FadeUp>
       </Container>
 
-      {/* Scroll Indicator */}
+      {/* Pulsing scroll-down indicator at the bottom center */}
+      <a
+        href="#about"
+        className={styles.scrollDownIndicator}
+        aria-label="Scroll down to about section"
+      >
+        <ChevronDown size={28} className={styles.scrollArrow} />
+      </a>
     </section>
   );
 }
