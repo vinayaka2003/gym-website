@@ -10,12 +10,12 @@ import FadeUp from "../../ui/Motion/FadeUp";
 import styles from "./Gallery.module.css";
 
 const images = [
-  { src: "/images/Gallery/gallery-1.jpg", alt: "Goldstone Fitness Gym - Premium Cardio Zone and Treadmills in Yelahanka" },
-  { src: "/images/Gallery/gallery-2.jpg", alt: "Goldstone Fitness Gym - Heavy Strength Training & Dumbbell Section" },
-  { src: "/images/Gallery/gallery-3.jpg", alt: "Goldstone Fitness Gym - Advanced Plate-Loaded Strength Equipment" },
-  { src: "/images/Gallery/gallery-4.jpg", alt: "Goldstone Fitness Gym - CrossFit Functional Rig & Turf Workout Area" },
-  { src: "/images/Gallery/gallery-5.jpg", alt: "Goldstone Fitness Gym - Group Workout Classes and Aerobics Space" },
-  { src: "/images/Gallery/gallery-6.jpg", alt: "Goldstone Fitness Gym - Certified Personal Trainers & Coaching Area" },
+  { src: "/images/gallery/gallery-1.jpg", alt: "Goldstone Fitness Gym - Premium Cardio Zone and Treadmills in Yelahanka" },
+  { src: "/images/gallery/gallery-2.jpg", alt: "Goldstone Fitness Gym - Heavy Strength Training & Dumbbell Section" },
+  { src: "/images/gallery/gallery-3.jpg", alt: "Goldstone Fitness Gym - Advanced Plate-Loaded Strength Equipment" },
+  { src: "/images/gallery/gallery-4.jpg", alt: "Goldstone Fitness Gym - CrossFit Functional Rig & Turf Workout Area" },
+  { src: "/images/gallery/gallery-5.jpg", alt: "Goldstone Fitness Gym - Group Workout Classes and Aerobics Space" },
+  { src: "/images/gallery/gallery-6.jpg", alt: "Goldstone Fitness Gym - Certified Personal Trainers & Coaching Area" },
 ];
 
 export default function Gallery() {

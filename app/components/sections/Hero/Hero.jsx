@@ -77,7 +77,7 @@ export default function Hero() {
           >
             {/* Eyebrow */}
             <motion.div className={styles.badge} variants={variants}>
-              — Where strength meets discipline —
+              Where strength meets discipline
             </motion.div>
 
             {/* Heading */}
@@ -98,7 +98,7 @@ export default function Hero() {
             {/* Description */}
             <motion.p variants={variants}>
               Elite coaching, competition-grade equipment, and programming
-              built around your numbers — not a franchise template.
+              built around your numbers not a franchise template.
             </motion.p>
 
             {/* Buttons & Discover More */}
