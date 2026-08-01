@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import Button from "../../ui/Button/Button";
@@ -74,9 +75,12 @@ export default function Navbar() {
         >
           <div className={styles.wrapper}>
             <Link href="/" className={styles.logo}>
-              <img
+              <Image
                 src="/logo/logo.png"
                 alt="Goldstone Fitness Logo"
+                width={44}
+                height={44}
+                priority
                 className={styles.logoImage}
               />
               <div className={styles.logoText}>

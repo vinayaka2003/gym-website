@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 import styles from "./InstaPopup.module.css";
-
+import Image from "next/image";
 import MagneticButton from "../MagneticButton/MagneticButton";
 
 export default function InstaPopup() {
@@ -24,19 +24,22 @@ export default function InstaPopup() {
 
   return (
     <>
-      {/* Preload the logo so it's already in browser cache when popup opens */}
-      <link rel="preload" as="image" href="/logo/logo pop.png" />
-      
       {show && (
-    <div className={styles.overlay}>
-      <div className={styles.popup} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={handleClose} aria-label="Close">
-          <X size={20} />
-        </button>
-        
-        <div className={styles.iconWrapper}>
-          <img src="/logo/logo pop.png" alt="Goldstone Fitness Logo" style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "50%" }} />
-        </div>
+        <div className={styles.overlay}>
+          <div className={styles.popup} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeBtn} onClick={handleClose} aria-label="Close">
+              <X size={20} />
+            </button>
+            
+            <div className={styles.iconWrapper}>
+              <Image
+                src="/logo/logo pop.png"
+                alt="Goldstone Fitness Logo"
+                width={90}
+                height={90}
+                style={{ objectFit: "contain", borderRadius: "50%" }}
+              />
+            </div>
         
         <h3 className={styles.title}>Connect With Us</h3>
         <p className={styles.text}>

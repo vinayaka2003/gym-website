@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import styles from "./Preloader.module.css";
 
 export default function Preloader() {
@@ -20,7 +21,14 @@ export default function Preloader() {
     <div className={styles.preloader}>
       <div className={styles.content}>
         <div className={styles.logo} style={{ marginBottom: "25px" }}>
-          <img src="/logo/logo.png" alt="Goldstone Fitness Logo" style={{ height: "130px", objectFit: "contain" }} />
+          <Image
+            src="/logo/logo.png"
+            alt="Goldstone Fitness Logo"
+            width={130}
+            height={130}
+            priority
+            style={{ objectFit: "contain" }}
+          />
         </div>
 
         <h2>Goldstone Fitness</h2>
