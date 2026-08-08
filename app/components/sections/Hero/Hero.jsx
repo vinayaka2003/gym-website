@@ -38,7 +38,7 @@ export default function Hero() {
       {/* Background Media with Poster Fallback */}
       {reduceMotion ? (
         <img
-          src="/images/hero-mobile.jpg"
+          src="/images/gallery/gallery-1.webp"
           alt="Goldstone Fitness Gym Background"
           className={styles.bgImage}
           loading="eager"
@@ -49,12 +49,12 @@ export default function Hero() {
           loop
           muted
           playsInline
-          poster="/images/hero-mobile.jpg"
+          poster="/images/gallery/gallery-1.webp"
           className={styles.bgVideo}
         >
           <source src="/videos/gym.mp4" type="video/mp4" />
           <img
-            src="/images/hero-mobile.jpg"
+            src="/images/gallery/gallery-1.webp"
             alt="Goldstone Fitness Gym Background"
             className={styles.bgImage}
           />

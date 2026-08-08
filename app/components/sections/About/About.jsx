@@ -28,7 +28,7 @@ export default function About() {
           <div className={styles.wrapper}>
             <div className={styles.image}>
               <Image
-                src="/images/about/about.jpg"
+                src="/images/about/about.webp"
                 alt="Goldstone Fitness Gym Interior - Premium Workout Equipment in Yelahanka, Bengaluru"
                 width={550}
                 height={650}

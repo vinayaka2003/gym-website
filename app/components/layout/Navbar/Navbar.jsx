@@ -76,7 +76,7 @@ export default function Navbar() {
           <div className={styles.wrapper}>
             <Link href="/" className={styles.logo}>
               <Image
-                src="/logo/logo.png"
+                src="/logo/logo.svg"
                 alt="Goldstone Fitness Logo"
                 width={44}
                 height={44}

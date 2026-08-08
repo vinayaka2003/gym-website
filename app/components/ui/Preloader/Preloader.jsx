@@ -22,7 +22,7 @@ export default function Preloader() {
       <div className={styles.content}>
         <div className={styles.logo} style={{ marginBottom: "25px" }}>
           <Image
-            src="/logo/logo.png"
+            src="/logo/logo.svg"
             alt="Goldstone Fitness Logo"
             width={130}
             height={130}

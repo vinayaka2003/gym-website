@@ -1,10 +1,10 @@
 const galleryImages = [
-  { src: "/gallery/gym1.jpg" },
-  { src: "/gallery/gym2.jpg" },
-  { src: "/gallery/gym3.jpg" },
-  { src: "/gallery/gym4.jpg" },
-  { src: "/gallery/gym5.jpg" },
-  { src: "/gallery/gym6.jpg" },
+  { src: "/images/gallery/gallery-1.webp" },
+  { src: "/images/gallery/gallery-2.webp" },
+  { src: "/images/gallery/gallery-3.webp" },
+  { src: "/images/gallery/gallery-4.webp" },
+  { src: "/images/gallery/gallery-5.webp" },
+  { src: "/images/gallery/gallery-6.webp" },
 ];
 
 export default galleryImages;

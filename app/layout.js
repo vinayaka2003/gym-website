@@ -88,7 +88,7 @@ export const metadata = {
 
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/images/gallery/gallery-1.webp",
         width: 1200,
         height: 630,
         alt: "Goldstone Fitness",
@@ -104,7 +104,7 @@ export const metadata = {
     description:
       "Premium Gym in Yelahanka, Bengaluru with top-tier equipment and certified coaches.",
 
-    images: ["/og-image.jpg"],
+    images: ["/images/gallery/gallery-1.webp"],
   },
 
   robots: {
@@ -121,9 +121,9 @@ export const metadata = {
   },
 
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icon.svg",
     shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    apple: "/icon.svg",
   },
 
   alternates: {
@@ -142,7 +142,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Gym",
   "name": "Goldstone Fitness",
-  "image": "https://goldstonefitness.com/og-image.jpg",
+  "image": "https://goldstonefitness.com/images/gallery/gallery-1.webp",
   "@id": "https://goldstonefitness.com/#gym",
   "url": "https://goldstonefitness.com",
   "telephone": "+918867441378",

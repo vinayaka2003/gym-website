@@ -33,7 +33,7 @@ export default function InstaPopup() {
             
             <div className={styles.iconWrapper}>
               <Image
-                src="/logo/logo pop.png"
+                src="/logo/logo pop.svg"
                 alt="Goldstone Fitness Logo"
                 width={90}
                 height={90}
