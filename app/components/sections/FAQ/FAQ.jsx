@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 import Container from "../../ui/Container/Container";
 import FadeUp from "../../ui/Motion/FadeUp";
@@ -9,29 +9,54 @@ import styles from "./FAQ.module.css";
 
 const faqs = [
   {
-    question: "Do you offer any free trial or day pass?",
+    question: "Can I visit the gym before becoming a member?",
     answer:
-      "We do not offer free trials or day passes. All members are required to enroll with a paid membership plan to access our facilities.",
+      "Absolutely. You can visit your preferred Goldstone Fitness location to explore the facilities, understand the environment, and speak with our team before choosing a membership.",
   },
   {
-    question: "What are your opening hours?",
+    question: "What are your gym timings?",
     answer:
-      "We are open Monday to Saturday from 5:00 AM to 10:00 PM and Sunday from 6:00 AM to 1:00 PM.",
+      "Our timings are designed to give you the flexibility to train around your daily schedule. Please check your preferred location for its current opening and closing hours.",
   },
   {
-    question: "Do you provide personal training?",
+    question: "What does my membership include?",
     answer:
-      "Yes. Our certified trainers create personalised workout and nutrition plans based on your fitness goals.",
+      "Your membership gives you access to the workout facilities and equipment at your chosen location. Membership inclusions may vary by plan, so our team can help you choose the right option.",
   },
   {
-    question: "Is parking available?",
+    question: "Do I need to be experienced to join?",
     answer:
-      "Yes, free parking is available for all members during gym hours.",
+      "Not at all. Goldstone Fitness welcomes everyone—from complete beginners to experienced lifters. Our team can help you get started with the right approach for your fitness level and goals.",
   },
   {
-    question: "Do you have separate workout areas for women?",
+    question: "Can I get a personal trainer?",
     answer:
-      "Yes. We provide a comfortable and secure environment with dedicated workout spaces where required.",
+      "Yes. Personal training is available for members who want individual attention, structured workouts, and guidance tailored to their fitness goals.",
+  },
+  {
+    question: "Can someone help me plan my workouts?",
+    answer:
+      "Yes. Our fitness team can help you understand the equipment, exercises, and training approach suited to your goals, so you can train with greater confidence and consistency.",
+  },
+  {
+    question: "Is parking available at the gym?",
+    answer:
+      "Parking availability varies depending on the location. Please contact your preferred Goldstone Fitness branch for specific parking information.",
+  },
+  {
+    question: "Do you have facilities for women?",
+    answer:
+      "Yes. We strive to provide a comfortable and welcoming environment for everyone. Facilities and arrangements may vary by location, so our team can provide details for your preferred branch.",
+  },
+  {
+    question: "Can I choose a different Goldstone Fitness location?",
+    answer:
+      "Our locations are designed to make training more convenient. Speak with our team about the locations and membership options available to you.",
+  },
+  {
+    question: "How do I get started?",
+    answer:
+      "Simply choose your preferred Goldstone Fitness location and get in touch with our team. We'll guide you through the available memberships and help you take the first step toward your fitness goals.",
   },
 ];
 
@@ -48,37 +73,49 @@ export default function FAQ() {
             <h2>Frequently Asked Questions</h2>
 
             <p>
-              Everything you need to know before joining Goldstone Fitness.
+              Everything you need to know before you get started.
             </p>
           </div>
 
           <div className={styles.list}>
-            {faqs.map((item, index) => (
-              <div className={styles.item} key={index}>
-                <button
-                  className={styles.question}
-                  onClick={() =>
-                    setActive(active === index ? -1 : index)
-                  }
+            {faqs.map((item, index) => {
+              const isOpen = active === index;
+              return (
+                <div 
+                  className={`${styles.item} ${isOpen ? styles.activeItem : ""}`} 
+                  key={index}
                 >
-                  <span>{item.question}</span>
+                  <button
+                    className={styles.question}
+                    onClick={() =>
+                      setActive(active === index ? -1 : index)
+                    }
+                    aria-expanded={isOpen}
+                  >
+                    <span>{item.question}</span>
+                    <ChevronDown 
+                      size={20} 
+                      className={`${styles.chevron} ${isOpen ? styles.chevronRotated : ""}`} 
+                    />
+                  </button>
 
-                  {active === index ? (
-                    <Minus size={20} />
-                  ) : (
-                    <Plus size={20} />
-                  )}
-                </button>
-
-                <div
-                  className={`${styles.answer} ${
-                    active === index ? styles.open : ""
-                  }`}
-                >
-                  <p>{item.answer}</p>
+                  <div className={`${styles.answerWrapper} ${isOpen ? styles.answerExpanded : ""}`}>
+                    <div className={styles.answerInner}>
+                      <p>{item.answer}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+
+          <div className={styles.conversion}>
+            <p>
+              Still have a question? Our team is here to help.{" "}
+              <a href="#contact" className={styles.contactLink}>
+                Get in touch &rarr;
+              </a>
+            </p>
           </div>
         </FadeUp>
       </Container>

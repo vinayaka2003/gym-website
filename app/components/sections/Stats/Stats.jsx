@@ -21,9 +21,9 @@ const stats = [
     title: "Years Experience",
   },
   {
-    number: 24,
-    suffix: "/7",
-    title: "Open Support",
+    number: 2,
+    suffix: " Locations",
+    title: "Kattigenahalli & Jakkur",
   },
 ];
 

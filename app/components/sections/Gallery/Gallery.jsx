@@ -10,7 +10,7 @@ import FadeUp from "../../ui/Motion/FadeUp";
 import styles from "./Gallery.module.css";
 
 const images = [
-  { src: "/images/gallery/gallery-1.webp", alt: "Goldstone Fitness Gym - Premium Cardio Zone and Treadmills in Yelahanka" },
+  { src: "/images/gallery/gallery-1.webp", alt: "Goldstone Fitness Gym - Premium Cardio Zone and Treadmills in Kattigenahalli" },
   { src: "/images/gallery/gallery-2.webp", alt: "Goldstone Fitness Gym - Heavy Strength Training & Dumbbell Section" },
   { src: "/images/gallery/gallery-3.webp", alt: "Goldstone Fitness Gym - Advanced Plate-Loaded Strength Equipment" },
   { src: "/images/gallery/gallery-4.webp", alt: "Goldstone Fitness Gym - CrossFit Functional Rig & Turf Workout Area" },

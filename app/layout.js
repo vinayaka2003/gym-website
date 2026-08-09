@@ -37,12 +37,12 @@ export const metadata = {
   metadataBase: new URL("https://goldstonefitness.com"),
 
   title: {
-    default: "Goldstone Fitness | Best Gym & Fitness Centre in Yelahanka, Bengaluru",
+    default: "Goldstone Fitness | Best Gym & Fitness Centre in Kattigenahalli, Bengaluru",
     template: "%s | Goldstone Fitness",
   },
 
   description:
-    "Goldstone Fitness is the premium gym & fitness centre in Yelahanka, Bengaluru. Certified personal trainers, CrossFit, strength training, yoga, and custom nutrition plans.",
+    "Goldstone Fitness is the premium gym & fitness centre in Kattigenahalli, Bengaluru. Get personal training, CrossFit, yoga, & custom diets. Join now!",
 
   keywords: [
     "Gym",
@@ -55,7 +55,7 @@ export const metadata = {
     "Weight Loss",
     "Fitness Club",
     "Gym Bangalore",
-    "Gym Yelahanka",
+    "Gym Kattigenahalli",
     "Premium Gym",
     "Fitness Studio",
     "CrossFit Bangalore",
@@ -73,10 +73,10 @@ export const metadata = {
   applicationName: "Goldstone Fitness",
 
   openGraph: {
-    title: "Goldstone Fitness | Best Gym & Fitness Centre in Yelahanka, Bengaluru",
+    title: "Goldstone Fitness | Best Gym & Fitness Centre in Kattigenahalli, Bengaluru",
 
     description:
-      "Experience Yelahanka's best gym. Goldstone Fitness offers certified trainers, top-tier strength and CrossFit equipment, and custom nutrition programs.",
+      "Experience Kattigenahalli's best gym. Goldstone Fitness offers certified trainers, top-tier strength and CrossFit equipment, and custom nutrition programs.",
 
     url: "https://goldstonefitness.com",
 
@@ -99,10 +99,10 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "Goldstone Fitness | Gym & Fitness Centre in Yelahanka",
+    title: "Goldstone Fitness | Gym & Fitness Centre in Kattigenahalli",
 
     description:
-      "Premium Gym in Yelahanka, Bengaluru with top-tier equipment and certified coaches.",
+      "Premium Gym in Kattigenahalli, Bengaluru with top-tier equipment and certified coaches.",
 
     images: ["/images/gallery/gallery-1.webp"],
   },
@@ -140,55 +140,125 @@ export const metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Gym",
-  "name": "Goldstone Fitness",
-  "image": "https://goldstonefitness.com/images/gallery/gallery-1.webp",
-  "@id": "https://goldstonefitness.com/#gym",
-  "url": "https://goldstonefitness.com",
-  "telephone": "+918867441378",
-  "priceRange": "$$",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "#No 62, KFC Building – 4th Floor, Baba Nagar, Bagalur Main Road",
-    "addressLocality": "Yelahanka",
-    "addressRegion": "Bengaluru",
-    "postalCode": "560064",
-    "addressCountry": "IN"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 13.1155,
-    "longitude": 77.6352
-  },
-  "openingHoursSpecification": [
+  "@graph": [
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
-      "opens": "05:00",
-      "closes": "22:00"
+      "@type": "Gym",
+      "@id": "https://goldstonefitness.com/#brand",
+      "name": "Goldstone Fitness",
+      "url": "https://goldstonefitness.com",
+      "logo": "https://goldstonefitness.com/logo/logo.svg",
+      "image": "https://goldstonefitness.com/images/gallery/gallery-1.webp",
+      "telephone": "+918867441378",
+      "sameAs": [
+        "https://instagram.com/goldstone_fitness_01"
+      ]
     },
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Sunday",
-      "opens": "07:00",
-      "closes": "11:00"
+      "@type": "Gym",
+      "@id": "https://goldstonefitness.com/#branch-kattigenahalli",
+      "name": "Goldstone Fitness - Kattigenahalli",
+      "parentOrganization": {
+        "@type": "Gym",
+        "@id": "https://goldstonefitness.com/#brand"
+      },
+      "url": "https://goldstonefitness.com#branches",
+      "telephone": "+918867441378",
+      "priceRange": "$$",
+      "image": "https://goldstonefitness.com/images/gallery/gallery-1.webp",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "#No 62, KFC Building – 4th Floor, Dwaraka Nagar, Bagalur Main Road",
+        "addressLocality": "Kattigenahalli",
+        "addressRegion": "Bengaluru",
+        "postalCode": "560064",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 13.1155,
+        "longitude": 77.6352
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "05:00",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "07:00",
+          "closes": "11:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "16:00",
+          "closes": "21:00"
+        }
+      ]
     },
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Sunday",
-      "opens": "16:00",
-      "closes": "21:00"
+      "@type": "Gym",
+      "@id": "https://goldstonefitness.com/#branch-jakkur",
+      "name": "Goldstone Fitness - Jakkur",
+      "parentOrganization": {
+        "@type": "Gym",
+        "@id": "https://goldstonefitness.com/#brand"
+      },
+      "url": "https://goldstonefitness.com#branches",
+      "telephone": "+918867441378",
+      "priceRange": "$$",
+      "image": "https://goldstonefitness.com/images/gallery/gallery-2.webp",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jakkur Main Road, Jakkur",
+        "addressLocality": "Jakkur",
+        "addressRegion": "Bengaluru",
+        "postalCode": "560064",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 13.072571,
+        "longitude": 77.604726
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "05:00",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "07:00",
+          "closes": "11:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "16:00",
+          "closes": "21:00"
+        }
+      ]
     }
-  ],
-  "sameAs": [
-    "https://instagram.com/goldstone_fitness_01"
   ]
 };
 

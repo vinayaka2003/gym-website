@@ -149,3 +149,40 @@
     justify-content: center;
   }
 }
+
+.locations {
+  margin-top: 25px;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .locations {
+    text-align: center;
+    max-width: 300px;
+    margin: 25px auto 0;
+  }
+}
+
+.locations h3 {
+  font-size: 1.05rem;
+  color: var(--dark-text);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.locations ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.locations li {
+  font-size: 0.95rem;
+  color: var(--light-text);
+  line-height: 1.5;
+}

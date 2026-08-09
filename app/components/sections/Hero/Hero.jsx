@@ -1,7 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 import Container from "../../ui/Container/Container";
 import FadeUp from "../../ui/Motion/FadeUp";
 import styles from "./Hero.module.css";
@@ -29,6 +31,16 @@ const item = {
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
+  const [loadVideo, setLoadVideo] = useState(false);
+
+  useEffect(() => {
+    // Delay loading video to optimize initial LCP
+    const timer = setTimeout(() => {
+      setLoadVideo(true);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const variants = reduceMotion
     ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } }
     : item;
@@ -36,12 +48,16 @@ export default function Hero() {
   return (
     <section id="home" className={styles.hero}>
       {/* Background Media with Poster Fallback */}
-      {reduceMotion ? (
-        <img
+      {reduceMotion || !loadVideo ? (
+        <Image
           src="/images/gallery/gallery-1.webp"
           alt="Goldstone Fitness Gym Background"
+          fill
+          priority
+          quality={85}
+          sizes="100vw"
           className={styles.bgImage}
-          loading="eager"
+          style={{ objectFit: "cover" }}
         />
       ) : (
         <video
@@ -53,11 +69,6 @@ export default function Hero() {
           className={styles.bgVideo}
         >
           <source src="/videos/gym.mp4" type="video/mp4" />
-          <img
-            src="/images/gallery/gallery-1.webp"
-            alt="Goldstone Fitness Gym Background"
-            className={styles.bgImage}
-          />
         </video>
       )}
 
@@ -77,7 +88,7 @@ export default function Hero() {
           >
             {/* Eyebrow */}
             <motion.div className={styles.badge} variants={variants}>
-              Where strength meets discipline
+              ⚡ Goldstone Kattigenahalli Branch is Open & Operational!
             </motion.div>
 
             {/* Heading */}

@@ -5,6 +5,7 @@ import {
   Phone,
   MapPin,
   CheckCircle,
+  ChevronDown,
 } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 
@@ -22,6 +23,7 @@ export default function Contact() {
 
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
+  const [activeAddressId, setActiveAddressId] = useState(1); // Yelahanka open by default
 
   function handleChange(e) {
     setForm({
@@ -99,29 +101,81 @@ export default function Contact() {
 
             <div className={styles.wrapper}>
               <div className={styles.info}>
-                <div className={styles.card}>
+                <a href="tel:+918867441378" className={styles.card} aria-label="Call Goldstone Fitness">
                   <Phone size={22} />
 
                   <div>
                     <h4>Call Us</h4>
                     <p>+91 88674 41378</p>
                   </div>
-                </div>
+                </a>
 
-                <div className={styles.card}>
+                <a
+                  href="https://instagram.com/goldstone_fitness_01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.card}
+                  aria-label="Visit Goldstone Fitness Instagram"
+                >
                   <FaInstagram size={22} />
                   <div>
                     <h4>Instagram</h4>
-                    <p>@goldstonefitness</p>
+                    <p>@goldstone_fitness_01</p>
                   </div>
-                </div>
+                </a>
 
-                <div className={styles.card}>
-                  <MapPin size={22} />
-
-                  <div>
+                <div className={`${styles.card} ${styles.visitCard}`}>
+                  <div className={styles.visitHeader}>
+                    <MapPin size={22} className={styles.visitIcon} />
                     <h4>Visit Us</h4>
-                    <p>#No 62, KFC Building – 4th Floor<br />Baba Nagar, Bagalur Main Road<br />Yelahanka, Bengaluru - 560064</p>
+                  </div>
+
+                  <div className={styles.locationsList}>
+                    {/* Kattigenahalli Location Item */}
+                    <div className={`${styles.locationItem} ${activeAddressId === 1 ? styles.locationItemActive : ""}`}>
+                      <button
+                        type="button"
+                        className={styles.locationToggle}
+                        onClick={() => setActiveAddressId(activeAddressId === 1 ? null : 1)}
+                      >
+                        <span className={styles.locationName}>Kattigenahalli Branch</span>
+                        <ChevronDown 
+                          size={16} 
+                          className={`${styles.locationChevron} ${activeAddressId === 1 ? styles.chevronRotated : ""}`} 
+                        />
+                      </button>
+                      
+                      <div className={`${styles.addressWrapper} ${activeAddressId === 1 ? styles.addressExpanded : ""}`}>
+                        <div className={styles.addressInner}>
+                          <p className={styles.addressText}>
+                            #No 62, KFC Building – 4th Floor, Dwaraka Nagar, Bagalur Main Road, Kattigenahalli, Bengaluru - 560064
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Jakkur Location Item */}
+                    <div className={`${styles.locationItem} ${activeAddressId === 2 ? styles.locationItemActive : ""}`}>
+                      <button
+                        type="button"
+                        className={styles.locationToggle}
+                        onClick={() => setActiveAddressId(activeAddressId === 2 ? null : 2)}
+                      >
+                        <span className={styles.locationName}>Jakkur Branch</span>
+                        <ChevronDown 
+                          size={16} 
+                          className={`${styles.locationChevron} ${activeAddressId === 2 ? styles.chevronRotated : ""}`} 
+                        />
+                      </button>
+                      
+                      <div className={`${styles.addressWrapper} ${activeAddressId === 2 ? styles.addressExpanded : ""}`}>
+                        <div className={styles.addressInner}>
+                          <p className={styles.addressText}>
+                            Jakkur Main Road, Jakkur, Bengaluru, Karnataka 560064
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -189,22 +243,6 @@ export default function Contact() {
                   </div>
                 )}
               </form>
-            </div>
-          </FadeUp>
-        </Container>
-      </section>
-
-      <section className={styles.mapSection}>
-        <Container>
-          <FadeUp>
-            <div className={styles.map}>
-              <iframe
-                src="https://www.google.com/maps?q=Goldstone+Fitness+Baba+Nagar+Bengaluru&output=embed"
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Gym Location"
-              />
             </div>
           </FadeUp>
         </Container>

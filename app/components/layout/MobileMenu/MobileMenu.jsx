@@ -11,6 +11,7 @@ import Button from "../../ui/Button/Button";
 const links = [
   { name: "Home",       href: "#home" },
   { name: "About",      href: "#about" },
+  { name: "Branches",   href: "#branches" },
   { name: "Facilities", href: "#facilities" },
   { name: "Gallery",    href: "#gallery" },
   { name: "Contact",    href: "#contact" },

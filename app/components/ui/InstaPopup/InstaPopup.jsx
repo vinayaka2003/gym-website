@@ -11,11 +11,46 @@ export default function InstaPopup() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShow(true);
-    }, 3500);
+    // Check localStorage (shown within last 7 days)
+    const lastShown = localStorage.getItem("insta-popup-last-shown");
+    const now = Date.now();
+    const sevenDaysInMs = 7 * 24 * 60 * 60 * 1000;
     
-    return () => clearTimeout(timer);
+    if (lastShown && now - parseInt(lastShown, 10) < sevenDaysInMs) {
+      return;
+    }
+
+    let timer;
+    let scrollListener;
+
+    const showPopup = () => {
+      setShow(true);
+      localStorage.setItem("insta-popup-last-shown", now.toString());
+      cleanup();
+    };
+
+    // Trigger after 15 seconds
+    timer = setTimeout(showPopup, 15000);
+
+    // Trigger after 50% scroll
+    scrollListener = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        const scrollPercent = (window.scrollY / totalHeight) * 100;
+        if (scrollPercent >= 50) {
+          showPopup();
+        }
+      }
+    };
+
+    window.addEventListener("scroll", scrollListener, { passive: true });
+
+    const cleanup = () => {
+      if (timer) clearTimeout(timer);
+      window.removeEventListener("scroll", scrollListener);
+    };
+
+    return cleanup;
   }, []);
 
   const handleClose = () => {

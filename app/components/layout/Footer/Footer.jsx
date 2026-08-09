@@ -16,6 +16,14 @@ export default function Footer() {
             <p>
               Elevate your lifestyle. Join Goldstone Fitness for an unparalleled training experience. It starts with you.
             </p>
+
+            <div className={styles.locations}>
+              <h3>Our Locations</h3>
+              <ul>
+                <li>📍 Kattigenahalli</li>
+                <li>📍 Jakkur (Opening Soon)</li>
+              </ul>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -28,6 +36,9 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="#about">About</Link>
+              </li>
+              <li>
+                <Link href="#branches">Branches</Link>
               </li>
               <li>
                 <Link href="#facilities">Facilities</Link>

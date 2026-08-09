@@ -13,6 +13,7 @@ import styles from "./Navbar.module.css";
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
+  { name: "Branches", href: "#branches" },
   { name: "Facilities", href: "#facilities" },
   { name: "Gallery", href: "#gallery" },
   { name: "Contact", href: "#contact" },
