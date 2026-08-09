@@ -88,7 +88,7 @@ export default function Hero() {
           >
             {/* Eyebrow */}
             <motion.div className={styles.badge} variants={variants}>
-              ⚡ Goldstone Kattigenahalli Branch is Open & Operational!
+              ⚡ Join Goldstone Fitness and get started today
             </motion.div>
 
             {/* Heading */}
