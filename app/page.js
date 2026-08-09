@@ -32,6 +32,10 @@ const Testimonials = dynamic(() => import("./components/sections/Testimonials/Te
   loading: () => <SectionSkeleton />,
 });
 
+const GoogleReviews = dynamic(() => import("./components/sections/GoogleReviews/GoogleReviews"), {
+  loading: () => <SectionSkeleton />,
+});
+
 const FAQ = dynamic(() => import("./components/sections/FAQ/FAQ"), {
   loading: () => <SectionSkeleton />,
 });
@@ -48,7 +52,9 @@ export default function Home() {
         <Facilities />
         <Gallery />
         <Testimonials />
+        <GoogleReviews />
         <Etiquette />
+
         <FAQ />
         <Contact />
       </main>

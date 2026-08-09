@@ -124,6 +124,7 @@ export default function Contact() {
                   </div>
                 </a>
 
+
                 <div className={`${styles.card} ${styles.visitCard}`}>
                   <div className={styles.visitHeader}>
                     <MapPin size={22} className={styles.visitIcon} />
