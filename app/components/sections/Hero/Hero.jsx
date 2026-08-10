@@ -120,9 +120,9 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.primaryBtn}
-                  aria-label="Book a free session on WhatsApp"
+                  aria-label="Book a paid session on WhatsApp"
                 >
-                  Book a Free Session
+                  Book a Paid Session
                 </a>
 
                 <a
