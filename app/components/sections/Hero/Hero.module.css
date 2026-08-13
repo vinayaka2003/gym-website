@@ -107,24 +107,123 @@
 }
 
 /* ==========================================
-   BADGE
+/* ==========================================
+   PROMOTIONAL TICKER
 ========================================== */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 18px;
-  margin-bottom: 22px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.08);
+.ticker {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto 22px; /* Centered on mobile */
+  border-radius: 4px; /* Minimal, not excessively rounded */
+  border: 1px solid rgba(201, 162, 39, 0.25); /* Subtle gold border */
+  background: rgba(10, 12, 14, 0.85); /* Dark translucent background */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  color: #fff8e7; /* Cosmic Latte */
-  font-family: var(--font-accent);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 0.8rem;
-  letter-spacing: 0.6px;
+  box-sizing: border-box;
+}
+
+.tickerTrack {
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+  animation: marquee 24s linear infinite;
+}
+
+.tickerGroup {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 8px 0;
+  padding-right: 48px; /* Consistent gap between repetitions */
+}
+
+.tickerGroup span {
+  font-family: inherit;
+  font-size: clamp(0.66rem, 2.2vw, 0.76rem);
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.tickerHighlight {
+  color: #e8c766; /* Goldstone gold */
+  font-weight: 800;
+  animation: highlightGlow 3s infinite ease-in-out;
+  padding: 0 4px;
+}
+
+.tickerArrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  margin-left: 6px;
+  color: #e8c766;
+}
+
+.ticker:hover .tickerArrow {
+  transform: translateX(4px);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-33.3333%, 0, 0); /* Loop seamlessly after one full group */
+  }
+}
+
+@keyframes highlightGlow {
+  0%, 100% {
+    text-shadow: 0 0 6px rgba(232, 199, 102, 0.25);
+    color: #e8c766;
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(232, 199, 102, 0.6);
+    color: #ffda73;
+  }
+}
+
+@media (min-width: 768px) {
+  .ticker {
+    margin: 0 0 22px; /* Left-aligned on tablet and desktop */
+    width: max-content; /* Shrink wrap on desktop */
+    max-width: 100%;
+  }
+
+  .tickerTrack {
+    animation: none;
+    transform: none;
+    width: 100%;
+  }
+
+  .tickerGroup[data-marquee-hidden="true"] {
+    display: none; /* Hide duplicates on desktop */
+  }
+
+  .tickerGroup {
+    padding: 8px 20px; /* Symmetric padding on desktop */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tickerTrack {
+    animation: none;
+    transform: none;
+    width: 100%;
+    justify-content: center;
+  }
+  .tickerGroup[data-marquee-hidden="true"] {
+    display: none;
+  }
+  .tickerGroup {
+    padding-right: 0;
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ==========================================

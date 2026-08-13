@@ -9,4 +9,4 @@ export const smoothScrollTo = (e, href) => {
   });
 
   window.history.pushState(null, "", href);
-};
+}

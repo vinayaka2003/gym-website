@@ -86,9 +86,28 @@ export default function Hero() {
             initial="hidden"
             animate="show"
           >
-            {/* Eyebrow */}
-            <motion.div className={styles.badge} variants={variants}>
-              ⚡ Join Goldstone Fitness and get started today
+            {/* Promotional Ticker */}
+            <motion.div className={styles.ticker} variants={variants}>
+              <div className={styles.tickerTrack}>
+                <div className={styles.tickerGroup}>
+                  <span>INDEPENDENCE MONTH — </span>
+                  <span className={styles.tickerHighlight}>10% OFF</span>
+                  <span> MEMBERSHIPS — TRAIN HARD. STAY GOLDEN. </span>
+                  <span className={styles.tickerArrow}>→</span>
+                </div>
+                <div className={styles.tickerGroup} data-marquee-hidden="true" aria-hidden="true">
+                  <span>INDEPENDENCE MONTH — </span>
+                  <span className={styles.tickerHighlight}>10% OFF</span>
+                  <span> MEMBERSHIPS — TRAIN HARD. STAY GOLDEN. </span>
+                  <span className={styles.tickerArrow}>→</span>
+                </div>
+                <div className={styles.tickerGroup} data-marquee-hidden="true" aria-hidden="true">
+                  <span>INDEPENDENCE MONTH — </span>
+                  <span className={styles.tickerHighlight}>10% OFF</span>
+                  <span> MEMBERSHIPS — TRAIN HARD. STAY GOLDEN. </span>
+                  <span className={styles.tickerArrow}>→</span>
+                </div>
+              </div>
             </motion.div>
 
             {/* Heading */}
