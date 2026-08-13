@@ -33,7 +33,7 @@ const testimonials = [
     rating: 5,
     role: "Dedicated Member",
     review:
-      "Excellent gym with a motivating environment and **quality equipment**. Special thanks to **Coach Srinivas** for his patience, **expert guidance**, and personalized workout plans that keep me consistent and confident.",
+      "Excellent gym with a motivating environment and **quality equipment**. Special thanks to **the coaching team** for their patience, **expert guidance**, and personalized workout plans that keep me consistent and confident.",
   },
   {
     name: "Shani Jasni",
