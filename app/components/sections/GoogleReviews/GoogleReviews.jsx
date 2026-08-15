@@ -56,9 +56,9 @@ export default function GoogleReviews() {
       {/* Floating Review Card 2 */}
       <div className={`${styles.floatingReview} ${styles.float2}`} aria-hidden="true">
         <div className={styles.floatingHeader}>
-          <div className={styles.avatarMini}>BB</div>
+          <div className={styles.avatarMini}>SM</div>
           <div className={styles.floatingMeta}>
-            <strong>Benju Babu</strong>
+            <strong>Srikanth M</strong>
             <span>Dedicated Member</span>
           </div>
           <svg viewBox="0 0 24 24" width="14" height="14" className={styles.googleBadge}>
@@ -74,7 +74,7 @@ export default function GoogleReviews() {
           ))}
         </div>
         <p className={styles.floatingText}>
-          &ldquo;Excellent gym with Motivating environment, quality equipment & expert guidance.&rdquo;
+          &ldquo;Best gym experience I've had! Top-quality equipment, clean environment &amp; trainers who genuinely care.&rdquo;
         </p>
       </div>
 

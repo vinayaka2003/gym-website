@@ -172,7 +172,7 @@ export default function Contact() {
                       <div className={`${styles.addressWrapper} ${activeAddressId === 2 ? styles.addressExpanded : ""}`}>
                         <div className={styles.addressInner}>
                           <p className={styles.addressText}>
-                            Jakkur Main Road, Jakkur, Bengaluru, Karnataka 560064
+                            No 4, Sai ram building - 1st floor, above Kotak Mahindra bank, K V Jairam road, MCECHS layout phase 2, jakkur layout, jakkur, banglore - 560064
                           </p>
                         </div>
                       </div>

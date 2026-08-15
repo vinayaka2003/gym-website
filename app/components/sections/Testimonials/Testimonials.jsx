@@ -29,11 +29,11 @@ const testimonials = [
       "An exceptional gym with **modern equipment**, professional trainers, and an **energetic atmosphere**. The **personalized guidance** and positive community make every workout motivating. Highly recommended for anyone serious about fitness.",
   },
   {
-    name: "Benju Babu",
+    name: "Srikanth M",
     rating: 5,
     role: "Dedicated Member",
     review:
-      "Excellent gym with a motivating environment and **quality equipment**. Special thanks to **the coaching team** for their patience, **expert guidance**, and personalized workout plans that keep me consistent and confident.",
+      "Goldstone Fitness Gym is hands down the **best gym experience** I've had! The equipment is **top-quality**, the environment is clean and motivating, and the **trainers genuinely care** about your progress. The vibe pushes you to give your best every single workout. **Highly recommend** to anyone serious about fitness!",
   },
   {
     name: "Shani Jasni",

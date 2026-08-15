@@ -220,7 +220,7 @@ const jsonLd = {
       "image": "https://goldstonefitness.com/images/gallery/gallery-2.webp",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Jakkur Main Road, Jakkur",
+        "streetAddress": "No 4, Sai ram building - 1st floor, above Kotak Mahindra bank, K V Jairam road, MCECHS layout phase 2, jakkur layout, jakkur",
         "addressLocality": "Jakkur",
         "addressRegion": "Bengaluru",
         "postalCode": "560064",
@@ -228,8 +228,8 @@ const jsonLd = {
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 13.072571,
-        "longitude": 77.604726
+        "latitude": 13.072300729547326,
+        "longitude": 77.60475883355028
       },
       "openingHoursSpecification": [
         {
