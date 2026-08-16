@@ -1,7 +1,6 @@
 "use client";
 
-import CountUp from "react-countup";
-import { useInView } from "react-intersection-observer";
+import CountUpClient from "../../ui/CountUpClient/CountUpClient";
 import styles from "./Stats.module.css";
 
 const stats = [
@@ -28,26 +27,17 @@ const stats = [
 ];
 
 export default function Stats() {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
-  });
-
   return (
-    <section className={styles.stats} ref={ref}>
+    <section className={styles.stats}>
       <div className={styles.container}>
         {stats.map((item, index) => (
-          <div
-            key={index}
-            className={styles.card}
-          >
+          <div key={index} className={styles.card}>
             <h2>
-              {inView && (
-                <CountUp
-                  end={item.number}
-                  duration={2}
-                />
-              )}
+              <CountUpClient
+                end={item.number}
+                duration={2}
+                staticValue={String(item.number)}
+              />
               {item.suffix}
             </h2>
 

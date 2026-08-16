@@ -1,10 +1,6 @@
-"use client";
-
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-
 import Container from "../../ui/Container/Container";
 import FadeUp from "../../ui/Motion/FadeUp";
+import FAQAccordion from "./FAQAccordion";
 import styles from "./FAQ.module.css";
 
 const faqs = [
@@ -61,53 +57,22 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  const [active, setActive] = useState(0);
-
   return (
-    <section className={styles.faq} id="faq">
+    <section className={styles.faq} id="faq" aria-labelledby="faq-heading">
       <Container>
         <FadeUp>
           <div className={styles.heading}>
             <span>FAQ</span>
 
-            <h2>Frequently Asked Questions</h2>
+            <h2 id="faq-heading">Frequently Asked Questions</h2>
 
             <p>
               Everything you need to know before you get started.
             </p>
           </div>
 
-          <div className={styles.list}>
-            {faqs.map((item, index) => {
-              const isOpen = active === index;
-              return (
-                <div 
-                  className={`${styles.item} ${isOpen ? styles.activeItem : ""}`} 
-                  key={index}
-                >
-                  <button
-                    className={styles.question}
-                    onClick={() =>
-                      setActive(active === index ? -1 : index)
-                    }
-                    aria-expanded={isOpen}
-                  >
-                    <span>{item.question}</span>
-                    <ChevronDown 
-                      size={20} 
-                      className={`${styles.chevron} ${isOpen ? styles.chevronRotated : ""}`} 
-                    />
-                  </button>
-
-                  <div className={`${styles.answerWrapper} ${isOpen ? styles.answerExpanded : ""}`}>
-                    <div className={styles.answerInner}>
-                      <p>{item.answer}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          {/* FAQAccordion is a Client island — receives static data as props */}
+          <FAQAccordion faqs={faqs} />
 
           <div className={styles.conversion}>
             <p>
