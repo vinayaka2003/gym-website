@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FaInstagram, FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
 
 import Container from "../../ui/Container/Container";
+import TrackedLink from "../../ui/Analytics/TrackedLink";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -81,35 +82,38 @@ export default function Footer() {
 
             <div className={styles.socials}>
               {/* Phone */}
-              <a
+              <TrackedLink
                 href="tel:+918867441378"
                 aria-label="Call"
                 title="Call"
+                eventName="phone_click"
               >
                 <FaPhoneAlt size={20} color="#e7c171" />
-              </a>
+              </TrackedLink>
 
               {/* WhatsApp */}
-              <a
+              <TrackedLink
                 href="https://wa.me/918867441378?text=Hi%20Goldstone%20Fitness!%20I'm%20interested%20in%20joining%20the%20gym."
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
                 title="WhatsApp"
+                eventName="whatsapp_click"
               >
                 <FaWhatsapp size={20} color="#25D366" />
-              </a>
+              </TrackedLink>
 
               {/* Instagram */}
-              <a
+              <TrackedLink
                 href="https://instagram.com/goldstone_fitness_01"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
                 title="Instagram"
+                eventName="instagram_click"
               >
                 <FaInstagram size={20} color="#E1306C" />
-              </a>
+              </TrackedLink>
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { X, Dumbbell, ShieldCheck, ChevronRight } from "lucide-react";
 import styles from "./WhatsAppButton.module.css";
+import { trackGAEvent } from "../Analytics/track";
 
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +55,10 @@ export default function WhatsAppButton() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.menuItemSales}
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  trackGAEvent("whatsapp_click", { channel: "membership_sales", location: "whatsapp_widget" });
+                  setIsOpen(false);
+                }}
               >
                 <div className={styles.itemIconWrapperSales}>
                   <Dumbbell size={16} className={styles.itemIcon} />
@@ -71,7 +75,10 @@ export default function WhatsAppButton() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.menuItemFeedback}
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  trackGAEvent("whatsapp_click", { channel: "owner_hotline", location: "whatsapp_widget" });
+                  setIsOpen(false);
+                }}
               >
                 <div className={styles.itemIconWrapperFeedback}>
                   <ShieldCheck size={16} className={styles.itemIcon} />

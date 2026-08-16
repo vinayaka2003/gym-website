@@ -6,6 +6,7 @@ import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Container from "../../ui/Container/Container";
 import FadeUp from "../../ui/Motion/FadeUp";
+import { trackGAEvent } from "../../ui/Analytics/track";
 import styles from "./Hero.module.css";
 
 const WHATSAPP_URL =
@@ -140,6 +141,7 @@ export default function Hero() {
                   rel="noopener noreferrer"
                   className={styles.primaryBtn}
                   aria-label="Book a paid session on WhatsApp"
+                  onClick={() => trackGAEvent("booking_click", { location: "hero_primary" })}
                 >
                   Book a Paid Session
                 </a>

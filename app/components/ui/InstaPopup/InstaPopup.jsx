@@ -6,6 +6,7 @@ import { FaInstagram } from "react-icons/fa";
 import styles from "./InstaPopup.module.css";
 import Image from "next/image";
 import MagneticButton from "../MagneticButton/MagneticButton";
+import { trackGAEvent } from "../Analytics/track";
 
 export default function InstaPopup() {
   const [show, setShow] = useState(false);
@@ -87,7 +88,10 @@ export default function InstaPopup() {
             target="_blank" 
             rel="noopener noreferrer"
             className={styles.followBtn}
-            onClick={handleClose}
+            onClick={() => {
+              trackGAEvent("instagram_click");
+              handleClose();
+            }}
           >
             <FaInstagram size={18} style={{ marginRight: '8px' }} />
             Follow on Instagram

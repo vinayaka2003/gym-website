@@ -5,6 +5,7 @@ import { Phone, Clock, MapPin, ChevronDown, Map, ChevronUp } from "lucide-react"
 import Container from "../../ui/Container/Container";
 import Button from "../../ui/Button/Button";
 import FadeUp from "../../ui/Motion/FadeUp";
+import { trackGAEvent } from "../../ui/Analytics/track";
 import styles from "./Branches.module.css";
 
 export default function Branches() {
@@ -119,7 +120,11 @@ export default function Branches() {
                             <Phone size={15} aria-hidden="true" />
                           </div>
                           <div className={styles.infoText}>
-                            <a href={`tel:${branch.phone.replace(/\s+/g, "")}`} className={styles.phoneLink}>
+                            <a 
+                              href={`tel:${branch.phone.replace(/\s+/g, "")}`} 
+                              className={styles.phoneLink}
+                              onClick={() => trackGAEvent("phone_click", { branch: branch.branchName, location: "branches_card" })}
+                            >
                               {branch.phone}
                             </a>
                           </div>
@@ -145,6 +150,7 @@ export default function Branches() {
                             rel={branch.isOpeningSoon ? undefined : "noopener noreferrer"}
                             variant="primary"
                             className={`${styles.cardBtn} ${styles.primaryBtn}`}
+                            onClick={() => trackGAEvent("directions_click", { branch: branch.branchName, location: "branches_primary" })}
                           >
                             {branch.primaryBtnText}
                           </Button>
@@ -152,6 +158,11 @@ export default function Branches() {
                             href={branch.secondaryBtnHref}
                             variant="secondary"
                             className={`${styles.cardBtn} ${styles.secondaryBtn}`}
+                            onClick={() => {
+                              if (branch.secondaryBtnHref.startsWith("tel:")) {
+                                trackGAEvent("phone_click", { branch: branch.branchName, location: "branches_secondary" });
+                              }
+                            }}
                           >
                             {branch.secondaryBtnText}
                           </Button>
@@ -201,6 +212,7 @@ export default function Branches() {
                 rel="noopener noreferrer"
                 className={styles.mapClickOverlay}
                 aria-label="Open location in Google Maps"
+                onClick={() => trackGAEvent("directions_click", { branch: activeBranch.branchName, location: "map_overlay_desktop" })}
               />
             </div>
           </div>
@@ -232,6 +244,7 @@ export default function Branches() {
               rel="noopener noreferrer"
               className={styles.mapClickOverlay}
               aria-label="Open location in Google Maps"
+              onClick={() => trackGAEvent("directions_click", { branch: activeBranch.branchName, location: "map_overlay_mobile" })}
             />
           </div>
 

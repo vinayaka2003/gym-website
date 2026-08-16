@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { smoothScrollTo } from "../../../utils/scroll";
 import styles from "./MobileMenu.module.css";
 import Button from "../../ui/Button/Button";
+import { trackGAEvent } from "../../ui/Analytics/track";
 
 const links = [
   { name: "Home",       href: "#home" },
@@ -110,7 +111,10 @@ export default function MobileMenu({ open, onClose, activeSection }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.joinBtn}
-                onClick={onClose}
+                onClick={() => {
+                  trackGAEvent("membership_click", { location: "navbar_mobile" });
+                  onClose();
+                }}
               >
                 Join Now
               </Button>

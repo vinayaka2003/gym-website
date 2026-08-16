@@ -11,6 +11,7 @@ import { FaInstagram } from "react-icons/fa";
 
 import Container from "../../ui/Container/Container";
 import FadeUp from "../../ui/Motion/FadeUp";
+import { trackGAEvent } from "../../ui/Analytics/track";
 import styles from "./Contact.module.css";
 
 export default function Contact() {
@@ -75,6 +76,7 @@ export default function Contact() {
     console.log(form);
 
     setSuccess(true);
+    trackGAEvent("contact_form_submit");
 
     setForm({
       name: "",
@@ -101,7 +103,12 @@ export default function Contact() {
 
             <div className={styles.wrapper}>
               <div className={styles.info}>
-                <a href="tel:+918867441378" className={styles.card} aria-label="Call Goldstone Fitness">
+                <a
+                  href="tel:+918867441378"
+                  className={styles.card}
+                  aria-label="Call Goldstone Fitness"
+                  onClick={() => trackGAEvent("phone_click")}
+                >
                   <Phone size={22} />
 
                   <div>
@@ -116,6 +123,7 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   className={styles.card}
                   aria-label="Visit Goldstone Fitness Instagram"
+                  onClick={() => trackGAEvent("instagram_click")}
                 >
                   <FaInstagram size={22} />
                   <div>

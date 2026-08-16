@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Button from "../../ui/Button/Button";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import { smoothScrollTo } from "../../../utils/scroll";
+import { trackGAEvent } from "../../ui/Analytics/track";
 
 import styles from "./Navbar.module.css";
 
@@ -109,6 +110,7 @@ export default function Navbar() {
                   href="https://wa.me/918867441378?text=Hi%20Goldstone%20Fitness!%20I'm%20interested%20in%20joining%20the%20gym."
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackGAEvent("membership_click", { location: "navbar_desktop" })}
                 >
                   Join Now
                 </Button>
