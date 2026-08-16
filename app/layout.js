@@ -1,5 +1,7 @@
 import { Plus_Jakarta_Sans, Antonio } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
+
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -265,6 +267,21 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+
+        {/* Google Analytics 4 (GA4) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-GMD4VZLTTV"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-GMD4VZLTTV');
+          `}
+        </Script>
+
 
         {/* Initial Loading Screen */}
         <Preloader />
