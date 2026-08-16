@@ -120,12 +120,6 @@ export const metadata = {
     },
   },
 
-  icons: {
-    icon: "/icon.svg",
-    shortcut: "/favicon.ico",
-    apple: "/icon.svg",
-  },
-
   alternates: {
     canonical: "/",
   },
