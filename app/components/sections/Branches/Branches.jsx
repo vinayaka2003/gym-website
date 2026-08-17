@@ -47,7 +47,7 @@ export default function Branches() {
       secondaryBtnHref: "#contact",
       isOpeningSoon: true,
       mapEmbedSrc: "https://www.google.com/maps?q=13.072300729547326,77.60475883355028&output=embed",
-      gymPhoto: "/images/gallery/gallery-2.webp",
+      gymPhoto: "/logo/logo.svg",
     },
   ];
 
@@ -79,11 +79,11 @@ export default function Branches() {
                 >
                   <div className={styles.tabCardBody}>
                     {/* Gym Photo Column */}
-                    <div className={styles.gymPhotoWrapper}>
+                    <div className={`${styles.gymPhotoWrapper} ${branch.isOpeningSoon ? styles.logoPlaceholderWrapper : ""}`}>
                       <img
                         src={branch.gymPhoto}
-                        alt={`${branch.branchName} Interior View`}
-                        className={styles.gymPhoto}
+                        alt={`${branch.branchName} ${branch.isOpeningSoon ? "Logo" : "Interior View"}`}
+                        className={`${styles.gymPhoto} ${branch.isOpeningSoon ? styles.logoPlaceholder : ""}`}
                       />
                     </div>
 

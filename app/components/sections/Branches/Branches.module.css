@@ -123,6 +123,34 @@
   transform: scale(1.06);
 }
 
+.logoPlaceholderWrapper {
+  background: transparent !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px !important;
+}
+
+.logoPlaceholder {
+  object-fit: contain !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  filter: none !important;
+  opacity: 0.95 !important;
+  transform: none !important;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease !important;
+}
+
+.tabCard:hover .logoPlaceholder,
+.activeTab .logoPlaceholder {
+  filter: none !important;
+  opacity: 1 !important;
+  transform: scale(1.06) !important;
+}
+
 .cardTextContent {
   flex-grow: 1;
   display: flex;
