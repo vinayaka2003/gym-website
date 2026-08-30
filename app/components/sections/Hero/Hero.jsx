@@ -87,29 +87,7 @@ export default function Hero() {
             initial="hidden"
             animate="show"
           >
-            {/* Promotional Ticker */}
-            <motion.div className={styles.ticker} variants={variants}>
-              <div className={styles.tickerTrack}>
-                <div className={styles.tickerGroup}>
-                  <span>INDEPENDENCE MONTH — </span>
-                  <span className={styles.tickerHighlight}>10% OFF</span>
-                  <span> MEMBERSHIPS — TRAIN HARD. STAY GOLDEN. </span>
-                  <span className={styles.tickerArrow}>→</span>
-                </div>
-                <div className={styles.tickerGroup} data-marquee-hidden="true" aria-hidden="true">
-                  <span>INDEPENDENCE MONTH — </span>
-                  <span className={styles.tickerHighlight}>10% OFF</span>
-                  <span> MEMBERSHIPS — TRAIN HARD. STAY GOLDEN. </span>
-                  <span className={styles.tickerArrow}>→</span>
-                </div>
-                <div className={styles.tickerGroup} data-marquee-hidden="true" aria-hidden="true">
-                  <span>INDEPENDENCE MONTH — </span>
-                  <span className={styles.tickerHighlight}>10% OFF</span>
-                  <span> MEMBERSHIPS — TRAIN HARD. STAY GOLDEN. </span>
-                  <span className={styles.tickerArrow}>→</span>
-                </div>
-              </div>
-            </motion.div>
+            {/* Promotional Ticker Removed (Offer Closed) */}
 
             {/* Heading */}
             <motion.h1 variants={variants}>

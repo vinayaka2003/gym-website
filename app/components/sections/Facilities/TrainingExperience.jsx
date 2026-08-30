@@ -103,7 +103,7 @@ export default function TrainingExperience() {
               aria-selected={activeTab === 'general'}
               onClick={() => setActiveTab('general')}
             >
-              GENERAL <span className={styles.tabBreak}>TRAINING</span>
+              FREE GENERAL <span className={styles.tabBreak}>TRAINING</span>
             </button>
             <button 
               className={`${styles.tabButton} ${activeTab === 'personal' ? styles.tabActiveRed : ''}`}
