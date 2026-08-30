@@ -1,6 +1,7 @@
 import Container from "../../ui/Container/Container";
 import FadeUp from "../../ui/Motion/FadeUp";
 import FacilitiesGrid from "./FacilitiesGrid";
+import TrainingExperience from "./TrainingExperience";
 import styles from "./Facilities.module.css";
 
 const facilities = [
@@ -48,23 +49,27 @@ const facilities = [
 
 export default function Facilities() {
   return (
-    <section id="facilities" className={styles.facilities}>
-      <Container>
-        <FadeUp delay={0.1}>
-          <div className={styles.heading}>
-            <span>SERVICES OFFERED</span>
+    <>
+      <section id="facilities" className={styles.facilities}>
+        <Container>
+          <FadeUp delay={0.1}>
+            <div className={styles.heading}>
+              <span>SERVICES OFFERED</span>
 
-            <h2>Our Premium Fitness Services</h2>
+              <h2>Our Premium Fitness Services</h2>
 
-            <p>
-              We&apos;re here to guide you every step of the way with professional training, nutrition guidance, and an environment that inspires success.
-            </p>
-          </div>
-        </FadeUp>
+              <p>
+                We&apos;re here to guide you every step of the way with professional training, nutrition guidance, and an environment that inspires success.
+              </p>
+            </div>
+          </FadeUp>
 
-        {/* FacilitiesGrid is a Client island — receives static data as props */}
-        <FacilitiesGrid facilities={facilities} />
-      </Container>
-    </section>
+          {/* FacilitiesGrid is a Client island — receives static data as props */}
+          <FacilitiesGrid facilities={facilities} />
+        </Container>
+      </section>
+
+      <TrainingExperience />
+    </>
   );
 }

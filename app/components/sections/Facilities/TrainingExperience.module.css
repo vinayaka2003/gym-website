@@ -1,0 +1,408 @@
+/* ═══════════════════════════════════════════════════════
+   TRAINING EXPLORER — CSS MODULE
+   Goldstone Fitness · Premium Training Section
+   ═══════════════════════════════════════════════════════ */
+
+.wrapper {
+  --te-gold: #e7c171;
+  --te-gold-dark: #D4AF37;
+  --te-gold-light: rgba(231, 193, 113, 0.12);
+  --te-gold-border: rgba(212, 175, 55, 0.2);
+  --te-red: #C0392B;
+  --te-red-light: rgba(192, 57, 43, 0.07);
+  --te-red-border: rgba(192, 57, 43, 0.18);
+  --te-card-bg: rgba(255, 255, 255, 0.75);
+  --te-transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  padding: 80px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Header ────────────────────────────────────────── */
+
+.header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--te-gold-dark);
+  background: var(--te-gold-light);
+  border: 1px solid var(--te-gold-border);
+  margin-bottom: 24px;
+}
+
+.title {
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  color: var(--dark-text);
+  margin: 0 0 16px;
+}
+
+.subtitle {
+  color: var(--light-text);
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* ── Mobile & Desktop Tabs ─────────────────────────── */
+
+.tabContainer {
+  display: flex; /* Now visible on all screens */
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.tabList {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 6px;
+  border-radius: 30px;
+  position: relative;
+}
+
+.tabButton {
+  border: none;
+  background: transparent;
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--light-text);
+  cursor: pointer;
+  border-radius: 24px;
+  transition: color var(--te-transition);
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.tabBreak {
+  display: inline;
+}
+
+.tabIndicator {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  width: calc(50% - 6px);
+  border-radius: 24px;
+  background: var(--te-card-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform var(--te-transition);
+  z-index: 0;
+}
+
+.tabActiveGold { color: var(--te-gold-dark); }
+.tabActiveRed { color: var(--te-red); }
+
+/* ── Grid & Columns ────────────────────────────────── */
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column on all screens */
+  gap: 32px;
+  width: 100%;
+  max-width: 860px; /* Centered, controlled width on desktop */
+  margin: 0 auto;
+}
+
+/* Hide the inactive column based on parent class (global) */
+.gridShowGeneral .colRed { display: none; }
+.gridShowPersonal .colGold { display: none; }
+
+.column {
+  background: var(--te-card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.columnHeader {
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.columnEyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.colGold .columnEyebrow { color: var(--te-gold-dark); }
+.colRed .columnEyebrow { color: var(--te-red); }
+
+.columnTitle {
+  font-size: 1.8rem;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.columnDesc {
+  color: var(--light-text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Halftone Art */
+.colGold { border: 1px solid var(--te-gold-border); }
+.colRed { border: 1px solid var(--te-red-border); }
+
+.colGold::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 250px;
+  height: 250px;
+  background-image: radial-gradient(circle, rgba(212, 175, 55, 0.15) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 10%, transparent 60%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 10%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.colRed::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 250px;
+  height: 250px;
+  background-image: radial-gradient(circle, rgba(192, 57, 43, 0.12) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 10%, transparent 60%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 10%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Accordions ────────────────────────────────────── */
+
+.accordionList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.accordionItem {
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0,0,0,0.04);
+  overflow: hidden;
+  transition: background var(--te-transition), box-shadow var(--te-transition);
+  width: 100%;
+}
+
+.accordionItem:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.accordionHeader {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--dark-text);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.accordionNumber {
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-right: 12px;
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+.accordionTitle {
+  flex: 1;
+  letter-spacing: 0.5px;
+  margin-right: 12px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.accordionIcon {
+  transition: transform var(--te-transition);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.accordionItemActive {
+  background: var(--te-card-bg);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.08);
+}
+
+.colGold .accordionItemActive { border-left: 3px solid var(--te-gold); }
+.colRed .accordionItemActive { border-left: 3px solid var(--te-red); }
+
+.accordionItemActive .accordionIcon {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.colGold .accordionItemActive .accordionNumber { color: var(--te-gold-dark); opacity: 1; }
+.colRed .accordionItemActive .accordionNumber { color: var(--te-red); opacity: 1; }
+
+.accordionContent {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--te-transition);
+}
+
+.accordionItemActive .accordionContent {
+  grid-template-rows: 1fr;
+}
+
+.accordionInner {
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+/* Add padding to the wrapper inside to give space before text */
+.accordionInner > div {
+  padding-bottom: 20px;
+}
+
+.reqItem {
+  margin-bottom: 16px;
+}
+
+.reqItem:last-child {
+  margin-bottom: 0;
+}
+
+.reqTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--dark-text);
+  letter-spacing: 0.5px;
+}
+
+.reqDesc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(44, 44, 44, 0.8);
+  margin: 0;
+}
+
+/* ── Contact CTA ───────────────────────────────────── */
+
+.ctaWrapper {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.simpleContactLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--dark-text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: all var(--te-transition);
+}
+
+.simpleContactLink:hover {
+  border-bottom-color: var(--dark-text);
+  opacity: 0.8;
+}
+
+.ctaHighlight {
+  font-weight: 700;
+  color: var(--te-gold-dark);
+}
+
+/* ── Difference Section & Personalisation removed ── */
+
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 992px) {
+  .diffCols {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .diffVs {
+    transform: rotate(90deg);
+  }
+  
+  .diffCol {
+    text-align: center;
+  }
+  
+  .diffList li {
+    text-align: left;
+    display: inline-block; /* center the list block */
+    width: auto;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .wrapper { padding: 50px 0; }
+  
+  .title { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+  
+  .column { padding: 30px 20px; }
+  
+  .accordionHeader { padding: 14px 16px; font-size: 0.9rem; }
+  
+  .accordionInner { padding: 0 16px; }
+  
+  .tabButton {
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .tabBreak {
+    display: block;
+  }
+}

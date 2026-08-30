@@ -36,37 +36,37 @@ export const metadata = {
     title: "Goldstone Fitness",
   },
 
-  metadataBase: new URL("https://goldstonefitness.com"),
+  metadataBase: new URL("https://www.goldstonefitness.in"),
 
   title: {
-    default: "Goldstone Fitness | Best Gym & Fitness Centre in Kattigenahalli, Bengaluru",
+    default: "Goldstone Fitness | Premium Gym in Kattigenahalli & Jakkur, Bengaluru",
     template: "%s | Goldstone Fitness",
   },
 
   description:
-    "Goldstone Fitness is the premium gym & fitness centre in Kattigenahalli, Bengaluru. Get personal training, CrossFit, yoga, & custom diets. Join now!",
+    "Goldstone Fitness is Bengaluru's premier gym and fitness centre with locations in Kattigenahalli & Jakkur. We offer certified personal training, CrossFit, yoga, and bespoke nutrition.",
 
   keywords: [
-    "Gym",
-    "Fitness Centre",
-    "Workout",
-    "Personal Trainer",
-    "Bodybuilding",
+    "Gym in Kattigenahalli",
+    "Gym in Jakkur",
+    "Best Gym in Bangalore",
+    "Premium Fitness Centre",
+    "Personal Trainer Bengaluru",
+    "CrossFit Kattigenahalli",
+    "Yoga Classes Jakkur",
     "Strength Training",
-    "Cardio",
-    "Weight Loss",
-    "Fitness Club",
-    "Gym Bangalore",
-    "Gym Kattigenahalli",
-    "Premium Gym",
-    "Fitness Studio",
-    "CrossFit Bangalore",
+    "Weight Loss Program",
+    "Bodybuilding Gym near me",
     "Goldstone Fitness",
+    "Gym near Yelahanka",
+    "Best Gym near Reva University",
+    "Fitness Club Bangalore"
   ],
 
   authors: [
     {
       name: "Goldstone Fitness",
+      url: "https://www.goldstonefitness.in",
     },
   ],
 
@@ -75,16 +75,16 @@ export const metadata = {
   applicationName: "Goldstone Fitness",
 
   openGraph: {
-    title: "Goldstone Fitness | Best Gym & Fitness Centre in Kattigenahalli, Bengaluru",
+    title: "Goldstone Fitness | Premium Gym in Kattigenahalli & Jakkur",
 
     description:
-      "Experience Kattigenahalli's best gym. Goldstone Fitness offers certified trainers, top-tier strength and CrossFit equipment, and custom nutrition programs.",
+      "Experience Bengaluru's elite fitness centers. Goldstone Fitness offers certified trainers, top-tier strength and CrossFit equipment, and custom nutrition programs in Kattigenahalli & Jakkur.",
 
-    url: "https://goldstonefitness.com",
+    url: "https://www.goldstonefitness.in",
 
     siteName: "Goldstone Fitness",
 
-    locale: "en_US",
+    locale: "en_IN",
 
     type: "website",
 
@@ -93,19 +93,18 @@ export const metadata = {
         url: "/images/gallery/gallery-1.webp",
         width: 1200,
         height: 630,
-        alt: "Goldstone Fitness",
+        alt: "Goldstone Fitness Premium Gym Interior",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-
+    site: "@goldstonefitness",
+    creator: "@goldstonefitness",
     title: "Goldstone Fitness | Gym & Fitness Centre in Kattigenahalli",
-
     description:
-      "Premium Gym in Kattigenahalli, Bengaluru with top-tier equipment and certified coaches.",
-
+      "Premium Gym in Bengaluru with top-tier equipment and certified coaches. Join the elite fitness community.",
     images: ["/images/gallery/gallery-1.webp"],
   },
 
@@ -123,7 +122,7 @@ export const metadata = {
   },
 
   alternates: {
-    canonical: "/",
+    canonical: "https://www.goldstonefitness.in",
   },
 
   other: {
@@ -138,29 +137,34 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Gym",
-      "@id": "https://goldstonefitness.com/#brand",
+      "@type": "HealthAndBeautyBusiness",
+      "@id": "https://www.goldstonefitness.in/#brand",
       "name": "Goldstone Fitness",
-      "url": "https://goldstonefitness.com",
-      "logo": "https://goldstonefitness.com/logo/logo.svg",
-      "image": "https://goldstonefitness.com/images/gallery/gallery-1.webp",
+      "url": "https://www.goldstonefitness.in",
+      "logo": "https://www.goldstonefitness.in/logo/logo.svg",
+      "image": "https://www.goldstonefitness.in/images/gallery/gallery-1.webp",
       "telephone": "+918867441378",
       "sameAs": [
         "https://instagram.com/goldstone_fitness_01"
       ]
     },
     {
-      "@type": "Gym",
-      "@id": "https://goldstonefitness.com/#branch-kattigenahalli",
+      "@type": "HealthAndBeautyBusiness",
+      "@id": "https://www.goldstonefitness.in/#branch-kattigenahalli",
       "name": "Goldstone Fitness - Kattigenahalli",
       "parentOrganization": {
-        "@type": "Gym",
-        "@id": "https://goldstonefitness.com/#brand"
+        "@type": "HealthAndBeautyBusiness",
+        "@id": "https://www.goldstonefitness.in/#brand"
       },
-      "url": "https://goldstonefitness.com#branches",
+      "url": "https://www.goldstonefitness.in#branches",
       "telephone": "+918867441378",
       "priceRange": "$$",
-      "image": "https://goldstonefitness.com/images/gallery/gallery-1.webp",
+      "image": "https://www.goldstonefitness.in/images/gallery/gallery-1.webp",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "150"
+      },
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "#No 62, KFC Building – 4th Floor, Dwaraka Nagar, Bagalur Main Road",
@@ -177,14 +181,7 @@ const jsonLd = {
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday"
-          ],
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
           "opens": "05:00",
           "closes": "22:00"
         },
@@ -203,17 +200,22 @@ const jsonLd = {
       ]
     },
     {
-      "@type": "Gym",
-      "@id": "https://goldstonefitness.com/#branch-jakkur",
+      "@type": "HealthAndBeautyBusiness",
+      "@id": "https://www.goldstonefitness.in/#branch-jakkur",
       "name": "Goldstone Fitness - Jakkur",
       "parentOrganization": {
-        "@type": "Gym",
-        "@id": "https://goldstonefitness.com/#brand"
+        "@type": "HealthAndBeautyBusiness",
+        "@id": "https://www.goldstonefitness.in/#brand"
       },
-      "url": "https://goldstonefitness.com#branches",
+      "url": "https://www.goldstonefitness.in#branches",
       "telephone": "+918867441378",
       "priceRange": "$$",
-      "image": "https://goldstonefitness.com/images/gallery/gallery-2.webp",
+      "image": "https://www.goldstonefitness.in/images/gallery/gallery-2.webp",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "120"
+      },
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "No 4, Sai ram building - 1st floor, above Kotak Mahindra bank, K V Jairam road, MCECHS layout phase 2, jakkur layout, jakkur",
@@ -224,20 +226,13 @@ const jsonLd = {
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 13.072300729547326,
-        "longitude": 77.60475883355028
+        "latitude": 13.0723,
+        "longitude": 77.6047
       },
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday"
-          ],
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
           "opens": "05:00",
           "closes": "22:00"
         },

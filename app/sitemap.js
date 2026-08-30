@@ -1,10 +1,10 @@
 export default function sitemap() {
   return [
     {
-      url: "https://goldstonefitness.com",
-      lastModified: new Date("2026-08-16"),
+      url: "https://www.goldstonefitness.in",
+      lastModified: new Date(),
       priority: 1,
-      changeFrequency: "monthly",
+      changeFrequency: "weekly",
     },
   ];
 }
