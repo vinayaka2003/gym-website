@@ -24,11 +24,11 @@ export default function Branches() {
       phone: "+91 88674 41378",
       timings: "Mon-Sat: 5:00 AM - 10:00 PM | Sun: 7:00 AM - 11:00 AM, 4:00 PM - 9:00 PM",
       primaryBtnText: "Get Directions",
-      primaryBtnHref: "https://maps.google.com/?q=Goldstone+Fitness+Kattigenahalli+Bengaluru",
+      primaryBtnHref: "https://maps.google.com/?q=13.121235938317112,77.61905111103125",
       secondaryBtnText: "Call Now",
       secondaryBtnHref: "tel:+918867441378",
       isOpeningSoon: false,
-      mapEmbedSrc: "https://www.google.com/maps?q=Goldstone+Fitness+Kattigenahalli+Bengaluru&output=embed",
+      mapEmbedSrc: "https://www.google.com/maps?q=13.121235938317112,77.61905111103125&output=embed",
       gymPhoto: "/images/gallery/gallery-1.webp",
     },
     {
