@@ -87,7 +87,23 @@ export default function Hero() {
             initial="hidden"
             animate="show"
           >
-            {/* Promotional Ticker Removed (Offer Closed) */}
+            <div className={styles.ticker} aria-label="September special offer">
+              <div className={styles.tickerTrack}>
+                {[0, 1, 2].map((group) => (
+                  <div
+                    className={styles.tickerGroup}
+                    data-marquee-hidden={group > 0 ? "true" : undefined}
+                    key={group}
+                  >
+                    <span className={styles.tickerHighlight}>September Special Offer</span>
+                    <span className={styles.tickerMessage}>Get Special Discount on Selected Packages</span>
+                    <span className={styles.tickerArrow} aria-hidden="true">
+                      &gt;
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             {/* Heading */}
             <motion.h1 variants={variants}>
