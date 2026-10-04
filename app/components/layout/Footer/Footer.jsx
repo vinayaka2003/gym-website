@@ -66,7 +66,7 @@ export default function Footer() {
                 <span className={styles.time}>
                   7:00 AM - 11:00 AM
                   <br />
-                  4:00 PM - 9:00 PM
+                  4:00 PM - 8:00 PM
                 </span>
               </div>
             </div>
@@ -119,7 +119,18 @@ export default function Footer() {
         </div>
 
         <div className={styles.bottom}>
-          © {new Date().getFullYear()} Goldstone Fitness. All Rights Reserved.
+          <p>© {new Date().getFullYear()} Goldstone Fitness. All Rights Reserved.</p>
+          <p className={styles.developer}>
+            Designed and developed by{" "}
+            <a
+              href="https://www.vinayaka.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.developerLink}
+            >
+              Vinayaka.S
+            </a>
+          </p>
         </div>
       </Container>
     </footer>

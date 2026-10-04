@@ -18,7 +18,7 @@ const facilities = [
   {
     iconName: "HeartPulse",
     title: "CrossFit",
-    description: "High-intensity functional training sessions. Schedule: Friday & Thursday — Morning 7–8 AM | Evening 7–8 PM.",
+    description: "High-intensity functional training sessions. Schedule: Tuesday & Friday — Morning 7–8 AM | Evening 7–8 PM.",
   },
   {
     iconName: "HeartPulse",
@@ -36,9 +36,9 @@ const facilities = [
     description: "Structured 90-day weight-loss & gain programs focused on sustainable, long-term results.",
   },
   {
-    iconName: "Lock",
+    iconName: "Users",
     title: "Zumba, Aerobics & Stepper Dance",
-    description: "Fun, high-energy group classes for all levels. Dynamic routines that keep you moving — never static, always exciting!",
+    description: "Fun, high-energy group classes for all levels. Schedule: Morning 10–11 AM. Dynamic routines that keep you moving — never static, always exciting!",
   },
   {
     iconName: "Users",

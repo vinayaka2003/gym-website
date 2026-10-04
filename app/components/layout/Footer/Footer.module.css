@@ -113,6 +113,24 @@
   letter-spacing: 0.5px;
 }
 
+.developer {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: var(--light-text);
+}
+
+.developerLink {
+  color: #e7c171;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.developerLink:hover {
+  color: var(--dark-text);
+  text-decoration: underline;
+}
+
 .hours {
   display: flex;
   flex-direction: column;

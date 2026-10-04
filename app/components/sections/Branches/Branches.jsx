@@ -22,7 +22,7 @@ export default function Branches() {
       badgeDot: "✔",
       address: "#No 62, KFC Building – 4th Floor, Dwaraka Nagar, Bagalur Main Road, Kattigenahalli, Bengaluru - 560064",
       phone: "+91 88674 41378",
-      timings: "Mon-Sat: 5:00 AM - 10:00 PM | Sun: 7:00 AM - 11:00 AM, 4:00 PM - 9:00 PM",
+      timings: "Mon-Sat: 5:00 AM - 10:00 PM | Sun: 7:00 AM - 11:00 AM, 4:00 PM - 8:00 PM",
       primaryBtnText: "Get Directions",
       primaryBtnHref: "https://maps.google.com/?q=13.121235938317112,77.61905111103125",
       secondaryBtnText: "Call Now",
