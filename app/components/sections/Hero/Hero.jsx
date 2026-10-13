@@ -12,6 +12,9 @@ import styles from "./Hero.module.css";
 const WHATSAPP_URL =
   "https://wa.me/918867441378?text=Hi%20Goldstone%20Fitness!%20I'm%20interested%20in%20joining%20the%20gym.";
 
+const OFFER_WHATSAPP_URL =
+  "https://wa.me/918867441378?text=Hi%20Goldstone%20Fitness!%20I'm%20interested%20in%20the%20Navaratri%20Special%209%25%20offer%20on%20all%20packages.";
+
 // One stagger sequence instead of four separately-timed motion.divs —
 // badge, headline, rule, copy, and actions read as a single reveal.
 const container = {
@@ -87,6 +90,40 @@ export default function Hero() {
             initial="hidden"
             animate="show"
           >
+            {/* Navaratri Special Offer Advertisement */}
+            <motion.a
+              href={OFFER_WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.ticker}
+              aria-label="Navaratri Special Offer: 9% offer for all packages"
+              variants={variants}
+              onClick={() =>
+                trackGAEvent("offer_banner_click", {
+                  location: "hero_ticker",
+                  offer: "navaratri_9_percent",
+                })
+              }
+            >
+              <div className={styles.tickerTrack}>
+                {[0, 1, 2].map((group) => (
+                  <div
+                    className={styles.tickerGroup}
+                    data-marquee-hidden={group > 0 ? "true" : undefined}
+                    key={group}
+                  >
+                    <span className={styles.tickerHighlight}>Navaratri Special</span>
+                    <span className={styles.tickerMessage}>
+                      9% Offer For All Packages
+                    </span>
+                    <span className={styles.tickerArrow} aria-hidden="true">
+                      &rarr;
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </motion.a>
+
             {/* Heading */}
             <motion.h1 variants={variants}>
               FIT <span className={styles.gold}>TODAY.</span>
