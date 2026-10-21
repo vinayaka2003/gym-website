@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Phone, Clock, MapPin, ChevronDown, Map, ChevronUp } from "lucide-react";
 import Container from "../../ui/Container/Container";
 import Button from "../../ui/Button/Button";
@@ -9,8 +9,68 @@ import { trackGAEvent } from "../../ui/Analytics/track";
 import styles from "./Branches.module.css";
 
 export default function Branches() {
-  const [activeBranchId, setActiveBranchId] = useState(1);
-  const [expandedBranchIdMobile, setExpandedBranchIdMobile] = useState(null); // Mobile accordion starts collapsed by default
+  const [activeBranchId, setActiveBranchId] = useState(() => {
+    if (typeof window !== "undefined") {
+      if (
+        window.__SELECTED_BRANCH__ === 2 ||
+        window.__SELECTED_BRANCH__ === "2" ||
+        window.__SELECTED_BRANCH__ === "jakkur" ||
+        window.location.hash.toLowerCase().includes("jakkur")
+      ) {
+        return 2;
+      }
+    }
+    return 1;
+  });
+  const [expandedBranchIdMobile, setExpandedBranchIdMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      if (
+        window.__SELECTED_BRANCH__ === 2 ||
+        window.__SELECTED_BRANCH__ === "2" ||
+        window.__SELECTED_BRANCH__ === "jakkur" ||
+        window.location.hash.toLowerCase().includes("jakkur")
+      ) {
+        return 2;
+      }
+    }
+    return null;
+  });
+
+  useEffect(() => {
+    const checkInitial = () => {
+      if (
+        window.__SELECTED_BRANCH__ === 2 ||
+        window.__SELECTED_BRANCH__ === "2" ||
+        window.__SELECTED_BRANCH__ === "jakkur" ||
+        window.location.hash.toLowerCase().includes("jakkur")
+      ) {
+        setActiveBranchId(2);
+        setExpandedBranchIdMobile(2);
+      }
+    };
+    checkInitial();
+
+    const handleSelectBranch = (e) => {
+      const val = e?.detail;
+      if (val === 2 || val === "2" || val === "jakkur") {
+        window.__SELECTED_BRANCH__ = 2;
+        setActiveBranchId(2);
+        setExpandedBranchIdMobile(2);
+      } else if (val === 1 || val === "1" || val === "kattigenahalli") {
+        window.__SELECTED_BRANCH__ = 1;
+        setActiveBranchId(1);
+        setExpandedBranchIdMobile(1);
+      }
+    };
+
+    window.addEventListener("select-branch", handleSelectBranch);
+    window.addEventListener("hashchange", checkInitial);
+
+    return () => {
+      window.removeEventListener("select-branch", handleSelectBranch);
+      window.removeEventListener("hashchange", checkInitial);
+    };
+  }, []);
 
   const branchesData = [
     {
@@ -35,19 +95,19 @@ export default function Branches() {
       id: 2,
       name: "Goldstone Fitness",
       branchName: "Jakkur",
-      status: "coming soon",
-      badgeClass: styles.badgeUpcoming,
-      badgeDot: "🟢",
+      status: "operational",
+      badgeClass: styles.badgeOperational,
+      badgeDot: "✔",
       address: "No 4, Sai ram building - 1st floor, above Kotak Mahindra bank, K V Jairam road, MCECHS layout phase 2, jakkur layout, jakkur, banglore - 560064",
       phone: "+91 88674 41378",
-      timings: "Opening Soon - October 2026",
-      primaryBtnText: "View Location",
+      timings: "Mon-Sat: 5:00 AM - 10:00 PM | Sun: 7:00 AM - 11:00 AM, 4:00 PM - 8:00 PM",
+      primaryBtnText: "Get Directions",
       primaryBtnHref: "https://maps.google.com/?q=13.072300729547326,77.60475883355028",
-      secondaryBtnText: "Contact Us",
-      secondaryBtnHref: "#contact",
-      isOpeningSoon: true,
+      secondaryBtnText: "Call Now",
+      secondaryBtnHref: "tel:+918867441378",
+      isOpeningSoon: false,
       mapEmbedSrc: "https://www.google.com/maps?q=13.072300729547326,77.60475883355028&output=embed",
-      gymPhoto: "/logo/logo.svg",
+      gymPhoto: "/images/gallery/gallery2-4.webp",
     },
   ];
 
@@ -72,6 +132,7 @@ export default function Branches() {
               return (
                 <div
                   key={branch.id}
+                  id={branch.id === 2 ? "branch-card-jakkur" : "branch-card-kattigenahalli"}
                   className={`${styles.tabCard} ${isActive ? styles.activeTab : ""}`}
                   onClick={() => setActiveBranchId(branch.id)}
                   role="tab"
@@ -255,6 +316,7 @@ export default function Branches() {
               return (
                 <div
                   key={branch.id}
+                  id={branch.id === 2 ? "mobile-branch-card-jakkur" : "mobile-branch-card-kattigenahalli"}
                   className={`${styles.mobileTabCard} ${isMobileActive ? styles.activeMobileTab : ""}`}
                   onClick={() => {
                     setActiveBranchId(branch.id);

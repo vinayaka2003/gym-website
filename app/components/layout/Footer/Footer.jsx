@@ -22,7 +22,7 @@ export default function Footer() {
               <h3>Our Locations</h3>
               <ul>
                 <li>📍 Kattigenahalli</li>
-                <li>📍 Jakkur (Opening Soon)</li>
+                <li>📍 Jakkur</li>
               </ul>
             </div>
           </div>

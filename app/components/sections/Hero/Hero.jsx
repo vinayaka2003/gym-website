@@ -116,9 +116,6 @@ export default function Hero() {
                     <span className={styles.tickerMessage}>
                       9% Offer For All Packages
                     </span>
-                    <span className={styles.tickerArrow} aria-hidden="true">
-                      &rarr;
-                    </span>
                   </div>
                 ))}
               </div>

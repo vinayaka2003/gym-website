@@ -167,7 +167,7 @@ export default function TrainingExperience() {
         <FadeUp delay={0.2}>
           <div className={styles.ctaWrapper}>
             <a href="#contact" className={styles.simpleContactLink}>
-              <span>Our experts will help you choose the package that <strong className={styles.ctaHighlight}>fits your goals best &rarr;</strong></span>
+              <span>Our experts will help you choose the package that <strong className={styles.ctaHighlight}>fits your goals best</strong></span>
             </a>
           </div>
         </FadeUp>

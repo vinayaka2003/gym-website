@@ -1,4 +1,4 @@
-import { Plus_Jakarta_Sans, Antonio } from "next/font/google";
+import { Plus_Jakarta_Sans, Antonio, Manrope, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 
@@ -17,13 +17,28 @@ const antonio = Antonio({
   display: "swap",
 });
 
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-manrope",
+  display: "swap",
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
 import Preloader from "./components/ui/Preloader/Preloader";
 import ScrollProgress from "./components/ui/ScrollProgress/ScrollProgress";
 import ScrollToTop from "./components/ui/ScrollToTop/ScrollToTop";
 import WhatsAppButton from "./components/ui/WhatsAppButton/WhatsAppButton";
 import BackToTop from "./components/ui/BackToTop/BackToTop";
 import PageTransition from "./components/ui/PageTransition/PageTransition";
-import InstaPopup from "./components/ui/InstaPopup/InstaPopup";
+// import InstaPopup from "./components/ui/InstaPopup/InstaPopup";
+import GrandOpeningPopup from "./components/ui/GrandOpeningPopup/GrandOpeningPopup";
 
 export const viewport = {
   themeColor: "#08090b",
@@ -102,7 +117,7 @@ export const metadata = {
     card: "summary_large_image",
     site: "@goldstonefitness",
     creator: "@goldstonefitness",
-    title: "Goldstone Fitness | Gym & Fitness Centre in Kattigenahalli",
+    title: "Goldstone Fitness | Gym & Fitness Centre in Kattigenahalli & Jakkur",
     description:
       "Premium Gym in Bengaluru with top-tier equipment and certified coaches. Join the elite fitness community.",
     images: ["/images/gallery/gallery-1.webp"],
@@ -210,7 +225,7 @@ const jsonLd = {
       "url": "https://www.goldstonefitness.in#branches",
       "telephone": "+918867441378",
       "priceRange": "$$",
-      "image": "https://www.goldstonefitness.in/images/gallery/gallery-2.webp",
+      "image": "https://www.goldstonefitness.in/images/gallery/gallery2-4.webp",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
@@ -255,7 +270,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} ${antonio.variable}`}>
+    <html lang="en" className={`${plusJakartaSans.variable} ${antonio.variable} ${manrope.variable} ${cormorantGaramond.variable}`}>
       <body>
         {/* Local Business JSON-LD Structured Data */}
         <script
@@ -296,8 +311,9 @@ export default function RootLayout({ children }) {
         <WhatsAppButton />
         <BackToTop />
         
-        {/* Marketing Popups */}
-        <InstaPopup />
+        {/* Marketing Popups — Temporarily switched to GrandOpeningPopup for Jakkur launch */}
+        {/* <InstaPopup /> */}
+        <GrandOpeningPopup />
 
       </body>
     </html>

@@ -24,9 +24,7 @@ const SectionSkeleton = () => (
   </div>
 );
 
-const Gallery = dynamic(() => import("./components/sections/Gallery/Gallery"), {
-  loading: () => <SectionSkeleton />,
-});
+import Gallery from "./components/sections/Gallery/Gallery";
 
 const Testimonials = dynamic(() => import("./components/sections/Testimonials/Testimonials"), {
   loading: () => <SectionSkeleton />,

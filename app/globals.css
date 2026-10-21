@@ -30,6 +30,12 @@
   --black: #08090b;
   --section-navbar-offset: 96px;
   --section-block-padding: clamp(28px, 4vh, 48px);
+
+  /* Editorial Luxury Design System Tokens */
+  --warm-ivory: #F7F5F0;
+  --forest-charcoal: #202824;
+  --champagne: #B69A66;
+  --stone: #E8E5DD;
 }
 
 html {

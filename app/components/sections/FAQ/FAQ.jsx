@@ -78,7 +78,7 @@ export default function FAQ() {
             <p>
               Still have a question? Our team is here to help.{" "}
               <a href="#contact" className={styles.contactLink}>
-                Get in touch &rarr;
+                Get in touch
               </a>
             </p>
           </div>
