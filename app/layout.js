@@ -38,7 +38,6 @@ import WhatsAppButton from "./components/ui/WhatsAppButton/WhatsAppButton";
 import BackToTop from "./components/ui/BackToTop/BackToTop";
 import PageTransition from "./components/ui/PageTransition/PageTransition";
 // import InstaPopup from "./components/ui/InstaPopup/InstaPopup";
-import GrandOpeningPopup from "./components/ui/GrandOpeningPopup/GrandOpeningPopup";
 
 export const viewport = {
   themeColor: "#08090b",
@@ -311,9 +310,7 @@ export default function RootLayout({ children }) {
         <WhatsAppButton />
         <BackToTop />
         
-        {/* Marketing Popups — Temporarily switched to GrandOpeningPopup for Jakkur launch */}
         {/* <InstaPopup /> */}
-        <GrandOpeningPopup />
 
       </body>
     </html>
