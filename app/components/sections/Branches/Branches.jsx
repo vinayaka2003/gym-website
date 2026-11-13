@@ -81,7 +81,7 @@ export default function Branches() {
       badgeClass: styles.badgeOperational,
       badgeDot: "✔",
       address: "#No 62, KFC Building – 4th Floor, Dwaraka Nagar, Bagalur Main Road, Kattigenahalli, Bengaluru - 560064",
-      phone: "+91 88674 41378",
+      phones: ["+91 88674 91378", "+91 88674 41378"],
       timings: "Mon-Sat: 5:00 AM - 10:00 PM | Sun: 7:00 AM - 11:00 AM, 4:00 PM - 8:00 PM",
       primaryBtnText: "Get Directions",
       primaryBtnHref: "https://maps.google.com/?q=13.121235938317112,77.61905111103125",
@@ -99,7 +99,7 @@ export default function Branches() {
       badgeClass: styles.badgeOperational,
       badgeDot: "✔",
       address: "No 4, Sai ram building - 1st floor, above Kotak Mahindra bank, K V Jairam road, MCECHS layout phase 2, jakkur layout, jakkur, banglore - 560064",
-      phone: "+91 88674 41378",
+      phones: ["+91 88674 91378", "+91 88674 41378"],
       timings: "Mon-Sat: 5:00 AM - 10:00 PM | Sun: 7:00 AM - 11:00 AM, 4:00 PM - 8:00 PM",
       primaryBtnText: "Get Directions",
       primaryBtnHref: "https://maps.google.com/?q=13.072300729547326,77.60475883355028",
@@ -181,13 +181,16 @@ export default function Branches() {
                             <Phone size={15} aria-hidden="true" />
                           </div>
                           <div className={styles.infoText}>
-                            <a 
-                              href={`tel:${branch.phone.replace(/\s+/g, "")}`} 
-                              className={styles.phoneLink}
-                              onClick={() => trackGAEvent("phone_click", { branch: branch.branchName, location: "branches_card" })}
-                            >
-                              {branch.phone}
-                            </a>
+                            {branch.phones.map((phone) => (
+                              <a
+                                key={phone}
+                                href={`tel:${phone.replace(/\s+/g, "")}`}
+                                className={styles.phoneLink}
+                                onClick={() => trackGAEvent("phone_click", { branch: branch.branchName, location: "branches_card" })}
+                              >
+                                {phone}
+                              </a>
+                            ))}
                           </div>
                         </div>
 

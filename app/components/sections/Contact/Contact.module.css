@@ -73,6 +73,15 @@
   line-height: 1.45;
 }
 
+.phoneNumber {
+  color: inherit;
+  text-decoration: none;
+}
+
+.phoneNumber:hover {
+  color: #b8860b;
+}
+
 .form {
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(20px);

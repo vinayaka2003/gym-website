@@ -29,6 +29,24 @@
   margin-bottom: 20px;
 }
 
+.contactNumbers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.contactNumber {
+  color: var(--light-text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contactNumber:hover {
+  color: #e7c171;
+}
+
 .footer h3 {
   margin-bottom: 24px;
   font-size: 1.15rem;
@@ -165,6 +183,10 @@
 
   .socials {
     justify-content: center;
+  }
+
+  .contactNumbers {
+    align-items: center;
   }
 }
 

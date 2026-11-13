@@ -80,6 +80,25 @@ export default function Footer() {
               Reach us through phone, WhatsApp or Instagram.
             </p>
 
+            <div className={styles.contactNumbers}>
+              <TrackedLink
+                href="tel:+918867491378"
+                className={styles.contactNumber}
+                aria-label="Call Goldstone Fitness at +91 88674 91378"
+                eventName="phone_click"
+              >
+                +91 88674 91378
+              </TrackedLink>
+              <TrackedLink
+                href="tel:+918867441378"
+                className={styles.contactNumber}
+                aria-label="Call Goldstone Fitness at +91 88674 41378"
+                eventName="phone_click"
+              >
+                +91 88674 41378
+              </TrackedLink>
+            </div>
+
             <div className={styles.socials}>
               {/* Phone */}
               <TrackedLink

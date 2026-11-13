@@ -103,19 +103,31 @@ export default function Contact() {
 
             <div className={styles.wrapper}>
               <div className={styles.info}>
-                <a
-                  href="tel:+918867441378"
-                  className={styles.card}
-                  aria-label="Call Goldstone Fitness"
-                  onClick={() => trackGAEvent("phone_click")}
-                >
+                <div className={styles.card}>
                   <Phone size={22} />
 
                   <div>
                     <h4>Call Us</h4>
-                    <p>+91 88674 41378</p>
+                    <p>
+                      <a
+                        href="tel:+918867491378"
+                        className={styles.phoneNumber}
+                        onClick={() => trackGAEvent("phone_click")}
+                      >
+                        +91 88674 91378
+                      </a>
+                    </p>
+                    <p>
+                      <a
+                        href="tel:+918867441378"
+                        className={styles.phoneNumber}
+                        onClick={() => trackGAEvent("phone_click")}
+                      >
+                        +91 88674 41378
+                      </a>
+                    </p>
                   </div>
-                </a>
+                </div>
 
                 <a
                   href="https://instagram.com/goldstone_fitness_01"

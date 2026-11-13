@@ -157,7 +157,7 @@ const jsonLd = {
       "url": "https://www.goldstonefitness.in",
       "logo": "https://www.goldstonefitness.in/logo/logo.svg",
       "image": "https://www.goldstonefitness.in/images/gallery/gallery-1.webp",
-      "telephone": "+918867441378",
+      "telephone": ["+918867491378", "+918867441378"],
       "sameAs": [
         "https://instagram.com/goldstone_fitness_01"
       ]
@@ -171,7 +171,7 @@ const jsonLd = {
         "@id": "https://www.goldstonefitness.in/#brand"
       },
       "url": "https://www.goldstonefitness.in#branches",
-      "telephone": "+918867441378",
+      "telephone": ["+918867491378", "+918867441378"],
       "priceRange": "$$",
       "image": "https://www.goldstonefitness.in/images/gallery/gallery-1.webp",
       "aggregateRating": {
@@ -222,7 +222,7 @@ const jsonLd = {
         "@id": "https://www.goldstonefitness.in/#brand"
       },
       "url": "https://www.goldstonefitness.in#branches",
-      "telephone": "+918867441378",
+      "telephone": ["+918867491378", "+918867441378"],
       "priceRange": "$$",
       "image": "https://www.goldstonefitness.in/images/gallery/gallery2-4.webp",
       "aggregateRating": {
