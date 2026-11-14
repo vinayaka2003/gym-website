@@ -298,11 +298,15 @@
 }
 
 .anniversaryCta {
+  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   min-height: 40px;
+  margin-top: 8px;
   padding: 8px 14px;
+  border: 0;
   border-radius: 999px;
   background: linear-gradient(110deg, #f3d37d 0%, #dfb74c 54%, #c9972e 100%);
   color: #1a1208;
@@ -312,6 +316,7 @@
   letter-spacing: 0.06em;
   text-decoration: none;
   text-transform: uppercase;
+  cursor: pointer;
   box-shadow: 0 6px 18px rgba(201, 162, 39, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.42);
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
@@ -325,6 +330,180 @@
 .anniversaryCta:focus-visible {
   outline: 2px solid #ffffff;
   outline-offset: 3px;
+}
+
+.offerDialogBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(5, 7, 10, 0.76);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.offerDialog {
+  position: relative;
+  width: min(100%, 420px);
+  padding: clamp(22px, 6vw, 30px);
+  border: 1px solid rgba(232, 199, 102, 0.62);
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(137, 69, 119, 0.32), transparent 60%),
+    linear-gradient(145deg, #201827, #111519 75%);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.56),
+    0 0 0 1px rgba(255, 255, 255, 0.025),
+    inset 0 1px 0 rgba(255, 244, 196, 0.12);
+  color: #fff8e9;
+  animation: offerDialogAppear 0.22s ease-out;
+}
+
+@keyframes offerDialogAppear {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.offerDialogClose {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff8e9;
+  cursor: pointer;
+}
+
+.offerDialogClose:focus-visible,
+.offerDialogChoices a:focus-visible {
+  outline: 2px solid #f0cd70;
+  outline-offset: 3px;
+}
+
+.offerDialogEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #f2cf72;
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.offerDialogEyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f2cf72;
+  box-shadow: 0 0 10px rgba(242, 207, 114, 0.74);
+}
+
+.offerDialog h2 {
+  margin: 10px 36px 0 0;
+  color: #fff3d4;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.9rem, 6vw, 2.25rem);
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+}
+
+.offerDialog p {
+  margin: 8px 0 0;
+  color: rgba(255, 244, 224, 0.72);
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 0.82rem;
+}
+
+.offerDialogChoices {
+  display: grid;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.offerDialogChoices a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 82px;
+  padding: 13px 15px;
+  border: 1px solid rgba(232, 199, 102, 0.22);
+  border-radius: 14px;
+  background: linear-gradient(110deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
+  color: #fff8e9;
+  font-family: var(--font-manrope), sans-serif;
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.offerDialogChoices a:hover {
+  transform: translateY(-1px);
+  border-color: rgba(242, 207, 114, 0.62);
+  background: linear-gradient(110deg, rgba(232, 199, 102, 0.13), rgba(255, 255, 255, 0.04));
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+}
+
+.offerDialogChoices a > svg {
+  flex: 0 0 auto;
+  color: #e8c766;
+  transition: transform 0.2s ease;
+}
+
+.offerDialogChoices a:hover > svg {
+  transform: translateX(3px);
+}
+
+.offerChoiceContent {
+  display: grid;
+  gap: 2px;
+}
+
+.offerChoiceLabel {
+  color: #f0cd70;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.offerDialogChoices strong {
+  color: #fff8e9;
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.offerChoicePrice {
+  color: rgba(255, 244, 224, 0.68);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .offerDialog {
+    animation: none;
+  }
 }
 
 /* Gold stroke divider */

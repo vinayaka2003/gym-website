@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 import Container from "../../ui/Container/Container";
 import FadeUp from "../../ui/Motion/FadeUp";
@@ -12,8 +12,11 @@ import styles from "./Hero.module.css";
 const WHATSAPP_URL =
   "https://wa.me/918867441378?text=Hi%20Goldstone%20Fitness!%20I'm%20interested%20in%20joining%20the%20gym.";
 
-const ANNIVERSARY_WHATSAPP_URL =
-  "https://wa.me/918867441378?text=Hi%20Goldstone%20Fitness!%20I'm%20interested%20in%20the%202nd%20anniversary%20offers.%20Please%20share%20details%20for%20both%20branches.";
+const KATTIGENAHALLI_OFFER_WHATSAPP_URL =
+  `https://wa.me/918867441378?text=${encodeURIComponent("Hi Goldstone Fitness! I'm interested in the 2nd anniversary offer at the Kattigenahalli branch. Please share details.")}`;
+
+const JAKKUR_OFFER_WHATSAPP_URL =
+  `https://wa.me/918867441378?text=${encodeURIComponent("Hi Goldstone Fitness! I'm interested in the offer at the Jakkur branch. Please share details.")}`;
 
 // One stagger sequence instead of four separately-timed motion.divs —
 // badge, headline, rule, copy, and actions read as a single reveal.
@@ -36,6 +39,10 @@ const item = {
 export default function Hero() {
   const reduceMotion = useReducedMotion();
   const [loadVideo, setLoadVideo] = useState(false);
+  const [showBranchPrompt, setShowBranchPrompt] = useState(false);
+  const enquireButtonRef = useRef(null);
+  const branchPromptRef = useRef(null);
+  const branchPromptWasOpen = useRef(false);
 
   useEffect(() => {
     // Delay loading video to optimize initial LCP
@@ -44,6 +51,47 @@ export default function Hero() {
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (!showBranchPrompt) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setShowBranchPrompt(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const focusableElements = branchPromptRef.current?.querySelectorAll(
+        'button:not([disabled]), a[href]'
+      );
+      if (!focusableElements?.length) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    branchPromptRef.current?.querySelector("button")?.focus();
+    branchPromptWasOpen.current = true;
+
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [showBranchPrompt]);
+
+  useEffect(() => {
+    if (!showBranchPrompt && branchPromptWasOpen.current) {
+      enquireButtonRef.current?.focus();
+      branchPromptWasOpen.current = false;
+    }
+  }, [showBranchPrompt]);
 
   const variants = reduceMotion
     ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } }
@@ -179,18 +227,79 @@ export default function Hero() {
                 <span>Registration and GST extra</span>
               </div>
 
-              <a
-                href={ANNIVERSARY_WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                ref={enquireButtonRef}
+                type="button"
                 className={styles.anniversaryCta}
+                onClick={() => setShowBranchPrompt(true)}
               >
                 Enquire about the offer
-              </a>
+              </button>
             </motion.aside>
           </motion.div>
         </FadeUp>
       </Container>
+
+      {showBranchPrompt && (
+        <div
+          className={styles.offerDialogBackdrop}
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setShowBranchPrompt(false);
+          }}
+        >
+          <section
+            ref={branchPromptRef}
+            className={styles.offerDialog}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="offer-dialog-title"
+          >
+            <button
+              type="button"
+              className={styles.offerDialogClose}
+              aria-label="Close branch selection"
+              onClick={() => setShowBranchPrompt(false)}
+            >
+              <X size={20} />
+            </button>
+            <span className={styles.offerDialogEyebrow}>Anniversary offer</span>
+            <h2 id="offer-dialog-title">Which branch are you interested in?</h2>
+            <p>Choose a branch to continue to WhatsApp.</p>
+            <div className={styles.offerDialogChoices}>
+              <a
+                href={KATTIGENAHALLI_OFFER_WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setShowBranchPrompt(false)}
+              >
+                <span className={styles.offerChoiceContent}>
+                  <span className={styles.offerChoiceLabel}>1st Branch</span>
+                  <strong>Kattigenahalli</strong>
+                  <span className={styles.offerChoicePrice}>
+                    Annual plan · ₹927/month
+                  </span>
+                </span>
+                <ChevronRight size={20} aria-hidden="true" />
+              </a>
+              <a
+                href={JAKKUR_OFFER_WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setShowBranchPrompt(false)}
+              >
+                <span className={styles.offerChoiceContent}>
+                  <span className={styles.offerChoiceLabel}>2nd Branch</span>
+                  <strong>Jakkur</strong>
+                  <span className={styles.offerChoicePrice}>
+                    Annual plan · ₹819/month
+                  </span>
+                </span>
+                <ChevronRight size={20} aria-hidden="true" />
+              </a>
+            </div>
+          </section>
+        </div>
+      )}
 
       {/* Pulsing scroll-down indicator at the bottom center */}
       <a
