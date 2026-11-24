@@ -175,18 +175,151 @@
 }
 
 @media (max-width: 900px) {
+  .footer {
+    padding: 36px 0 22px;
+  }
+
   .grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align: center;
+    width: min(100%, 620px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    grid-template-rows: auto auto auto;
+    gap: 22px 22px;
+    margin: 0 auto 24px;
+    text-align: left;
+    align-items: start;
+  }
+
+  .brand {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .brand .logo {
+    margin-bottom: 0;
+    font-size: 1.4rem;
+    line-height: 1.15;
+  }
+
+  .brand > p,
+  .brand .locations {
+    display: none;
+  }
+
+  .quickLinks {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    border-left: 1px solid rgba(212, 175, 55, 0.28);
+  }
+
+  .quickLinks ul {
+    gap: 12px;
+    margin-top: 0;
+  }
+
+  .hoursColumn {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .contactColumn {
+    display: contents;
+  }
+
+  .contactColumn > h3,
+  .contactColumn .contactText,
+  .contactColumn .contactNumbers {
+    display: none;
+  }
+
+  .footer h3 {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+  }
+
+  .footer ul {
+    gap: 12px;
+  }
+
+  .footer li a {
+    font-size: 0.9rem;
   }
 
   .socials {
-    justify-content: center;
+    grid-column: 1;
+    grid-row: 2;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 0;
+    align-self: center;
   }
 
-  .contactNumbers {
-    align-items: center;
+  .socials a {
+    width: 42px;
+    height: 42px;
+    box-shadow: 0 3px 10px rgba(48, 41, 22, 0.06);
+  }
+
+  .hours {
+    gap: 12px;
+  }
+
+  .hourRow {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .day,
+  .time {
+    font-size: 0.82rem;
+    letter-spacing: 0;
+    line-height: 1.5;
+  }
+
+  .bottom {
+    padding-top: 18px;
+    font-size: 0.76rem;
+  }
+
+  .developer {
+    font-size: 0.76rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    gap: 20px 14px;
+  }
+
+  .brand .logo {
+    font-size: clamp(1.05rem, 4.5vw, 1.25rem);
+    white-space: nowrap;
+  }
+
+  .quickLinks {
+    padding-left: 14px;
+  }
+
+  .socials {
+    gap: 10px;
+  }
+
+  .socials a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer li a {
+    font-size: 0.88rem;
+  }
+
+  .day,
+  .time {
+    font-size: 0.8rem;
   }
 }
 

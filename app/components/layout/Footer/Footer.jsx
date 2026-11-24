@@ -11,7 +11,7 @@ export default function Footer() {
       <Container>
         <div className={styles.grid}>
           {/* Brand */}
-          <div>
+          <div className={styles.brand}>
             <h2 className={styles.logo}>Goldstone Fitness</h2>
 
             <p>
@@ -28,7 +28,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className={styles.quickLinks}>
             <h3>Quick Links</h3>
 
             <ul>
@@ -54,7 +54,7 @@ export default function Footer() {
           </div>
 
           {/* Operating Hours */}
-          <div>
+          <div className={styles.hoursColumn}>
             <h3>Operating Hours</h3>
             <div className={styles.hours}>
               <div className={styles.hourRow}>
@@ -73,7 +73,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className={styles.contactColumn}>
             <h3>Connect With Us</h3>
 
             <p className={styles.contactText}>

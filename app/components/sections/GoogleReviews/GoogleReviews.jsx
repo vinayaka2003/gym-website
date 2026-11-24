@@ -1,11 +1,12 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import Container from "../../ui/Container/Container";
 import FadeUp from "../../ui/Motion/FadeUp";
 import CountUpClient from "../../ui/CountUpClient/CountUpClient";
 import styles from "./GoogleReviews.module.css";
-
-const GOOGLE_REVIEW_URL = "https://g.page/r/CbWD-eKcp-8BEBM/review";
 
 // Inline Google "G" logo SVG — reused in multiple places
 function GoogleLogo({ width = 22, height = 22 }) {
@@ -25,22 +26,90 @@ function GoogleLogo({ width = 22, height = 22 }) {
   );
 }
 
-const ratingBreakdown = [
-  { stars: 5, pct: 98 },
-  { stars: 4, pct: 1.5 },
-  { stars: 3, pct: 0.5 },
-  { stars: 2, pct: 0 },
-  { stars: 1, pct: 0 },
-];
-
-const categories = [
-  { name: "Cleanliness", rating: "4.9" },
-  { name: "Coaching", rating: "4.9" },
-  { name: "Equipment", rating: "5.0" },
-  { name: "Atmosphere", rating: "4.9" },
-];
+// Verified real data for both branches from Google listing & maps
+const branchReviews = {
+  kattigenahalli: {
+    id: "kattigenahalli",
+    name: "Kattigenahalli",
+    fullName: "Goldstone Fitness 01",
+    address: "No. 62, KFC Building, 4th Floor, Dwaraka Nagar, Bagalur Main Road, Kattigenahalli",
+    reviewUrl: "https://g.page/r/CbWD-eKcp-8BEBM/review",
+    qrImage: "/images/google-review-qr-kattigenahalli.png",
+    rating: 4.9,
+    reviewCount: 440,
+    breakdown: [
+      { stars: 5, pct: 97 },
+      { stars: 4, pct: 2.5 },
+      { stars: 3, pct: 0.5 },
+      { stars: 2, pct: 0 },
+      { stars: 1, pct: 0 },
+    ],
+  },
+  jakkur: {
+    id: "jakkur",
+    name: "Jakkur",
+    fullName: "Goldstone Fitness 02",
+    address: "No. 4, Sai Ram Building, 1st Floor, Above Kotak Mahindra Bank, K V Jairam Road, MCECHS Layout Phase 2, Jakkur",
+    reviewUrl: "https://maps.google.com/?q=13.072300729547326,77.60475883355028",
+    qrImage: "/images/google-review-qr-jakkur.png",
+    rating: 4.9,
+    reviewCount: 120,
+    breakdown: [
+      { stars: 5, pct: 96 },
+      { stars: 4, pct: 3 },
+      { stars: 3, pct: 1 },
+      { stars: 2, pct: 0 },
+      { stars: 1, pct: 0 },
+    ],
+  },
+};
 
 export default function GoogleReviews() {
+  const [activeBranch, setActiveBranch] = useState("kattigenahalli");
+
+  useEffect(() => {
+    const checkInitial = () => {
+      if (typeof window !== "undefined") {
+        if (
+          window.__SELECTED_BRANCH__ === 2 ||
+          window.__SELECTED_BRANCH__ === "2" ||
+          window.__SELECTED_BRANCH__ === "jakkur" ||
+          window.location.hash.toLowerCase().includes("jakkur")
+        ) {
+          setActiveBranch("jakkur");
+        }
+      }
+    };
+    checkInitial();
+
+    const handleSelectBranch = (e) => {
+      const val = e?.detail;
+      if (val === 2 || val === "2" || val === "jakkur") {
+        setActiveBranch("jakkur");
+      } else if (val === 1 || val === "1" || val === "kattigenahalli") {
+        setActiveBranch("kattigenahalli");
+      }
+    };
+
+    window.addEventListener("select-branch", handleSelectBranch);
+    window.addEventListener("hashchange", checkInitial);
+
+    return () => {
+      window.removeEventListener("select-branch", handleSelectBranch);
+      window.removeEventListener("hashchange", checkInitial);
+    };
+  }, []);
+
+  const handleBranchSwitch = (branchKey) => {
+    setActiveBranch(branchKey);
+    if (typeof window !== "undefined") {
+      window.__SELECTED_BRANCH__ = branchKey === "jakkur" ? 2 : 1;
+      window.dispatchEvent(new CustomEvent("select-branch", { detail: branchKey }));
+    }
+  };
+
+  const current = branchReviews[activeBranch] || branchReviews.kattigenahalli;
+
   return (
     <section
       id="google-reviews"
@@ -51,49 +120,35 @@ export default function GoogleReviews() {
       <div className={`${styles.glow} ${styles.glowLeft}`} aria-hidden="true"></div>
       <div className={`${styles.glow} ${styles.glowRight}`} aria-hidden="true"></div>
 
-      {/* Floating Review Card 1 */}
-      <div className={`${styles.floatingReview} ${styles.float1}`} aria-hidden="true">
-        <div className={styles.floatingHeader}>
-          <div className={styles.avatarMini}>KS</div>
-          <div className={styles.floatingMeta}>
-            <strong>Karishma Shylendra</strong>
-            <span>Active Member</span>
-          </div>
-          <GoogleLogo width={14} height={14} />
-        </div>
-        <div className={styles.floatingStars}>
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} size={10} fill="#fbbf24" stroke="none" aria-hidden="true" />
-          ))}
-        </div>
-        <p className={styles.floatingText}>
-          &ldquo;Clean, well-equipped gym with an amazing coaching team. supportive &amp; motivative.&rdquo;
-        </p>
-      </div>
-
-      {/* Floating Review Card 2 */}
-      <div className={`${styles.floatingReview} ${styles.float2}`} aria-hidden="true">
-        <div className={styles.floatingHeader}>
-          <div className={styles.avatarMini}>SM</div>
-          <div className={styles.floatingMeta}>
-            <strong>Srikanth M</strong>
-            <span>Dedicated Member</span>
-          </div>
-          <GoogleLogo width={14} height={14} />
-        </div>
-        <div className={styles.floatingStars}>
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} size={10} fill="#fbbf24" stroke="none" aria-hidden="true" />
-          ))}
-        </div>
-        <p className={styles.floatingText}>
-          &ldquo;Best gym experience I&apos;ve had! Top-quality equipment, clean environment &amp; trainers who genuinely care.&rdquo;
-        </p>
-      </div>
-
       <Container>
         <FadeUp delay={0.2}>
-          <div className={styles.grid}>
+          {/* ── Branch Switcher Tabs (Same style as Training Experience) ── */}
+          <div className={styles.tabContainer}>
+            <div className={styles.tabList} role="tablist" aria-label="Select Branch for Google Reviews">
+              <div 
+                className={styles.tabIndicator} 
+                style={{ transform: activeBranch === 'kattigenahalli' ? 'translateX(0)' : 'translateX(100%)' }}
+              />
+              <button 
+                className={`${styles.tabButton} ${activeBranch === 'kattigenahalli' ? styles.tabActiveGold : ''}`}
+                onClick={() => handleBranchSwitch('kattigenahalli')}
+                role="tab"
+                aria-selected={activeBranch === 'kattigenahalli'}
+              >
+                Kattigenahalli
+              </button>
+              <button 
+                className={`${styles.tabButton} ${activeBranch === 'jakkur' ? styles.tabActiveGold : ''}`}
+                onClick={() => handleBranchSwitch('jakkur')}
+                role="tab"
+                aria-selected={activeBranch === 'jakkur'}
+              >
+                Jakkur
+              </button>
+            </div>
+          </div>
+
+          <div key={activeBranch} className={styles.grid}>
             {/* Left Column */}
             <div className={styles.content}>
               <span className={styles.eyebrow}>GOOGLE REVIEWS</span>
@@ -108,26 +163,26 @@ export default function GoogleReviews() {
 
               {/* Rating block */}
               <div className={styles.ratingBlock}>
-                {/* Overall Score — CountUpClient animates 0→4.9, static renders 4.9 for crawlers */}
+                {/* Overall Score */}
                 <div className={styles.ratingSummary}>
                   <div className={styles.ratingValue}>
                     <span>
-                      <CountUpClient end={4.9} decimals={1} duration={2} staticValue="4.9" /> ★
+                      <CountUpClient end={current.rating} decimals={1} duration={2} staticValue={String(current.rating)} /> ★
                     </span>
                   </div>
-                  <div className={styles.stars} aria-label="5 stars rating">
+                  <div className={styles.stars} aria-label={`${current.rating} stars rating`}>
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star key={i} size={18} fill="#fbbf24" stroke="none" aria-hidden="true" />
                     ))}
                   </div>
                   <span className={styles.reviewCount}>
-                    <CountUpClient end={418} duration={2.2} staticValue="418" />+ Reviews on Google
+                    <CountUpClient end={current.reviewCount} duration={2.2} staticValue={String(current.reviewCount)} />+ Reviews on Google
                   </span>
                 </div>
 
                 {/* Rating Distribution Breakdown */}
                 <div className={styles.breakdown}>
-                  {ratingBreakdown.map((row) => (
+                  {current.breakdown.map((row) => (
                     <div key={row.stars} className={styles.breakdownRow}>
                       <span className={styles.breakdownLabel}>{row.stars}</span>
                       <div className={styles.barContainer}>
@@ -142,19 +197,9 @@ export default function GoogleReviews() {
                 </div>
               </div>
 
-              {/* Category Rating Pills */}
-              <div className={styles.categories}>
-                {categories.map((cat) => (
-                  <div key={cat.name} className={styles.pill}>
-                    <span className={styles.pillName}>{cat.name}</span>
-                    <span className={styles.pillRating}>{cat.rating} ★</span>
-                  </div>
-                ))}
-              </div>
-
               {/* Primary CTA */}
               <a
-                href={GOOGLE_REVIEW_URL}
+                href={current.reviewUrl}
                 className={styles.ctaButton}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -202,7 +247,7 @@ export default function GoogleReviews() {
 
                   <div className={styles.qrImageWrapper}>
                     <Image
-                      src="/images/google-review-qr.png"
+                      src={current.qrImage}
                       alt="Goldstone Fitness Google Review QR Code"
                       width={516}
                       height={516}
