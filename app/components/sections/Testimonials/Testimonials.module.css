@@ -307,7 +307,7 @@
     flex: 0 0 82vw;
     max-width: 340px;
     padding: 24px;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
   }
   .scrollContainer {
     gap: 16px;

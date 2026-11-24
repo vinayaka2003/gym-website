@@ -46,16 +46,39 @@ export default function TestimonialsCarousel({ testimonials }) {
   const handleScroll = useCallback(() => {
     if (!scrollRef.current) return;
     const container = scrollRef.current;
-    const containerCenter = container.scrollLeft + container.offsetWidth / 2;
     const cards = container.children;
     if (!cards || !cards.length) return;
 
+    const scrollLeft = container.scrollLeft;
+
+    // If at the very start, strictly card 0
+    if (scrollLeft <= 20) {
+      if (activeIndexRef.current !== 0) {
+        activeIndexRef.current = 0;
+        setActiveIndex(0);
+      }
+      return;
+    }
+
+    // If at the very end, strictly last card
+    const maxScroll = container.scrollWidth - container.clientWidth;
+    if (scrollLeft >= maxScroll - 20) {
+      const lastIndex = cards.length - 1;
+      if (activeIndexRef.current !== lastIndex) {
+        activeIndexRef.current = lastIndex;
+        setActiveIndex(lastIndex);
+      }
+      return;
+    }
+
+    // Find card closest to current scroll position
+    const baseOffset = cards[0].offsetLeft;
     let closestIndex = 0;
     let minDistance = Infinity;
 
     for (let i = 0; i < cards.length; i++) {
-      const cardCenter = cards[i].offsetLeft + cards[i].offsetWidth / 2;
-      const distance = Math.abs(cardCenter - containerCenter);
+      const cardLeft = cards[i].offsetLeft - baseOffset;
+      const distance = Math.abs(cardLeft - scrollLeft);
       if (distance < minDistance) {
         minDistance = distance;
         closestIndex = i;
@@ -73,27 +96,15 @@ export default function TestimonialsCarousel({ testimonials }) {
     const container = scrollRef.current;
     const cards = container.children;
     if (cards && cards[index]) {
-      const targetCard = cards[index];
-      // Center the card in viewport smoothly
-      const cardCenter = targetCard.offsetLeft + targetCard.offsetWidth / 2;
-      const containerCenter = container.offsetWidth / 2;
-      const targetScroll = cardCenter - containerCenter;
+      const baseOffset = cards[0].offsetLeft;
+      const targetScroll = cards[index].offsetLeft - baseOffset;
 
-      // Temporarily disable scroll-snap during programmatic scroll
-      container.style.scrollSnapType = "none";
       container.scrollTo({
-        left: Math.max(0, targetScroll),
+        left: targetScroll,
         behavior: "smooth",
       });
       setActiveIndex(index);
       activeIndexRef.current = index;
-
-      clearTimeout(scrollTimeoutRef.current);
-      scrollTimeoutRef.current = setTimeout(() => {
-        if (container) {
-          container.style.scrollSnapType = "x mandatory";
-        }
-      }, 400);
     }
   };
 
