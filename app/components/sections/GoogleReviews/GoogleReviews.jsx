@@ -53,7 +53,7 @@ const branchReviews = {
     reviewUrl: "https://maps.google.com/?q=13.072300729547326,77.60475883355028",
     qrImage: "/images/google-review-qr-jakkur.png",
     rating: 4.9,
-    reviewCount: 120,
+    reviewCount: 11,
     breakdown: [
       { stars: 5, pct: 96 },
       { stars: 4, pct: 3 },
@@ -176,7 +176,7 @@ export default function GoogleReviews() {
                     ))}
                   </div>
                   <span className={styles.reviewCount}>
-                    <CountUpClient end={current.reviewCount} duration={2.2} staticValue={String(current.reviewCount)} />+ Reviews on Google
+                    <CountUpClient end={current.reviewCount} duration={2.2} staticValue={String(current.reviewCount)} />{activeBranch === "kattigenahalli" ? "+" : ""} Reviews on Google
                   </span>
                 </div>
 

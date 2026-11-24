@@ -134,13 +134,28 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.card}
-                  aria-label="Visit Goldstone Fitness Instagram"
+                  aria-label="Visit Goldstone Fitness Kattigenahalli Instagram"
                   onClick={() => trackGAEvent("instagram_click")}
                 >
                   <FaInstagram size={22} />
                   <div>
-                    <h4>Instagram</h4>
+                    <h4>Instagram - Kattigenahalli</h4>
                     <p>@goldstone_fitness_01</p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://instagram.com/goldstone_fitness_02"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.card}
+                  aria-label="Visit Goldstone Fitness Jakkur Instagram"
+                  onClick={() => trackGAEvent("instagram_click")}
+                >
+                  <FaInstagram size={22} />
+                  <div>
+                    <h4>Instagram - Jakkur</h4>
+                    <p>@goldstone_fitness_02</p>
                   </div>
                 </a>
 

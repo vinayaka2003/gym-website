@@ -127,11 +127,21 @@ export default function Footer() {
                 href="https://instagram.com/goldstone_fitness_01"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram"
-                title="Instagram"
+                aria-label="Instagram - Kattigenahalli"
+                title="Instagram - Kattigenahalli"
                 eventName="instagram_click"
               >
                 <FaInstagram size={20} color="#E1306C" />
+              </TrackedLink>
+              <TrackedLink
+                href="https://instagram.com/goldstone_fitness_02"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram - Jakkur"
+                title="Instagram - Jakkur"
+                eventName="instagram_click"
+              >
+                <FaInstagram size={20} color="#E130C6" />
               </TrackedLink>
             </div>
           </div>

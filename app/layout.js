@@ -159,7 +159,8 @@ const jsonLd = {
       "image": "https://www.goldstonefitness.in/images/gallery/gallery-1.webp",
       "telephone": ["+918867491378", "+918867441378"],
       "sameAs": [
-        "https://instagram.com/goldstone_fitness_01"
+        "https://instagram.com/goldstone_fitness_01",
+        "https://instagram.com/goldstone_fitness_02"
       ]
     },
     {
@@ -228,7 +229,7 @@ const jsonLd = {
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
-        "reviewCount": "120"
+        "reviewCount": "11"
       },
       "address": {
         "@type": "PostalAddress",

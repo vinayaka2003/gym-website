@@ -10,8 +10,32 @@ import { trackGAEvent } from "../Analytics/track";
 
 export default function InstaPopup() {
   const [show, setShow] = useState(false);
+  const [activeBranch, setActiveBranch] = useState(1);
 
   useEffect(() => {
+    const syncBranch = () => {
+      if (
+        window.__SELECTED_BRANCH__ === 2 ||
+        window.__SELECTED_BRANCH__ === "2" ||
+        window.__SELECTED_BRANCH__ === "jakkur" ||
+        window.location.hash.toLowerCase().includes("jakkur")
+      ) {
+        setActiveBranch(2);
+      } else {
+        setActiveBranch(1);
+      }
+    };
+
+    syncBranch();
+    const handleSelectBranch = (event) => {
+      const value = event?.detail;
+      setActiveBranch(
+        value === 2 || value === "2" || value === "jakkur" ? 2 : 1
+      );
+    };
+    window.addEventListener("select-branch", handleSelectBranch);
+    window.addEventListener("hashchange", syncBranch);
+
     // Check localStorage (shown within last 7 days)
     const lastShown = localStorage.getItem("insta-popup-last-shown");
     const now = Date.now();
@@ -51,12 +75,27 @@ export default function InstaPopup() {
       window.removeEventListener("scroll", scrollListener);
     };
 
-    return cleanup;
+    return () => {
+      cleanup();
+      window.removeEventListener("select-branch", handleSelectBranch);
+      window.removeEventListener("hashchange", syncBranch);
+    };
   }, []);
 
   const handleClose = () => {
     setShow(false);
   };
+
+  const instagram =
+    activeBranch === 2
+      ? {
+          href: "https://instagram.com/goldstone_fitness_02",
+          label: "@goldstone_fitness_02",
+        }
+      : {
+          href: "https://instagram.com/goldstone_fitness_01",
+          label: "@goldstone_fitness_01",
+        };
 
   return (
     <>
@@ -84,7 +123,7 @@ export default function InstaPopup() {
         
         <MagneticButton>
           <a 
-            href="https://instagram.com/goldstone_fitness_01" 
+            href={instagram.href}
             target="_blank" 
             rel="noopener noreferrer"
             className={styles.followBtn}
@@ -94,7 +133,7 @@ export default function InstaPopup() {
             }}
           >
             <FaInstagram size={18} style={{ marginRight: '8px' }} />
-            Follow on Instagram
+            Follow {instagram.label}
           </a>
         </MagneticButton>
       </div>
